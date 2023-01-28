@@ -1,0 +1,103 @@
+.create-job-scrollbar {
+  .create-job-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px 5px 50px;
+    padding: 15px;
+    width: calc(75vw);
+    height: calc(95vh);
+    overflow: auto;
+    .edit-delete-icon-container {
+      position: relative;
+      right: 5%;
+      align-self: flex-end;
+    }
+    .edit-status {
+      margin-block: 50px 10px;
+      align-self: flex-end;
+      position: relative;
+      right: 10%;
+      font-family: "Quicksand";
+      .edit-status-container {
+        display: flex;
+        padding: 5px 10px 5px 10px;
+        font-size: 2em;
+        .edit-status-text {
+          margin-inline: 0 10px;
+          color: rgb(71, 67, 67);
+        }
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 0.5em;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: white;
+      border-block: 50%;
+      margin-block: 1.25em;
+      border: 1px solid black;
+      padding: 0.3em;
+      border-radius: 100vw;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #192030;
+      width: 6em;
+      border-radius: 100vw;
+      margin: 5px;
+    }
+
+    // h1 {
+    //   margin: 5% 5px 5% 35%;
+    // }
+    .h3 {
+      margin: auto auto 0 auto;
+      font-size: 1.5em;
+    }
+    .create-job-title {
+      margin-block: 10px;
+    }
+    .create-job-steps {
+      margin-block: 15px 10px;
+      .h3 {
+        margin-block: 10px 15px;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        margin-block: 5px;
+        margin-inline: 8px 5px;
+
+        .step {
+          display: inline-flex;
+          margin-block: 10px 5px;
+          cursor: pointer;
+          .minus-icon {
+            font-size: 1.25em;
+            color: rgb(145, 77, 77);
+            cursor: pointer;
+            &:hover {
+              transform: scale(1.2);
+            }
+          }
+        }
+        .dragged {
+          visibility: hidden;
+        }
+        .createIcon {
+          display: block;
+          float: right;
+          margin-right: 20%;
+          margin-top: 10px;
+          align-self: flex-end;
+        }
+        .final-message {
+          margin-top: 3%;
+        }
+      }
+    }
+    .submit-button {
+      margin-block: 4% 5px;
+    }
+  }
+}

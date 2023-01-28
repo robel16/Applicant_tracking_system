@@ -1,0 +1,28 @@
+$outline: #595d66;
+
+.input-fields-container {
+  label {
+    margin-block: 5px;
+  }
+
+  .input-container {
+    display: flex;
+
+    .input-field {
+      margin-inline: 5px 8px;
+      width: 700px;
+      height: calc(1em);
+      border: 0;
+      border-bottom: 2px solid #bfbfbf;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1.1em;
+      font-family: "Quicksand";
+      &:focus {
+        outline: none;
+        border-left: 0.5px solid $outline;
+        border-bottom: 1px solid $outline;
+      }
+    }
+  }
+}

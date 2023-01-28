@@ -1,0 +1,79 @@
+.job-detail-container{
+    margin:30px 50px;
+    display:flex;
+    flex-direction:column;
+    h1{
+        margin-block:30px 40px;
+        align-self:center;
+        font-size:2.5em;
+        font-style:italic;
+
+    }
+    
+    .icon-table-container{
+        display:flex;
+        flex-direction:column;
+        width:60vw;
+        .detail-edit-icon{
+            position:relative;
+            right:10px;
+            top:2px;
+            font-size:1.5em;
+            align-self: flex-end;
+            border:1px solid;
+            border-radius:15% 15% 0 0;
+            padding:5px;
+            transition:250ms ease ;
+            &:hover{
+                transform:scale(1.5);
+                border:1px white;
+                color:rgb(94, 92, 92)
+            }
+            
+        }
+
+        .detail-steps-container{
+            border:1px solid black;
+            border-radius:20px;
+            width:100%;
+    
+            .detail-step-container{
+                box-sizing:border-box;
+                display:flex;
+                width:inherit;
+                border-bottom:1px solid;
+                padding:15px;
+                font-size:1.1em;
+                &:last-child{
+                    border:0;
+                }
+                .detail-step{
+                    width:10vw;
+                    margin-inline:10px;
+                }
+    
+            }
+
+    }
+   
+
+    }
+    .detail-status-container{
+        align-self:flex-end;
+        display:flex;
+        margin-top:50px;
+        font-family:"Quicksand";
+        font-size:2em;
+        .status-tag{
+            padding:10px;
+        }
+        .status-container{
+            border:1px solid;
+            padding:10px;
+            margin-inline:5px;
+            padding-inline:20px;
+            border-radius:15px;
+        }
+
+    }
+}

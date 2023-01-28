@@ -1,0 +1,41 @@
+.job-item-container{
+    position:relative;
+
+    border:1px solid black;
+    border-radius:20px;
+    width:700px;
+    height:60px;
+    padding:15px;
+
+    
+    h2{
+        margin: 10px 2px 2px 2px;
+        font-family:"Source Sans Pro";
+        font-weight:light;
+    }
+
+    .job-icons{
+        float:right;
+    }
+    .status{
+        position:absolute;
+        bottom:10px;
+        right:50px
+    }
+    small{
+        margin:10px 2px 2px 2px;
+    }
+    
+}
+.active{
+    color:green;
+}
+.Approved{
+    color:blue
+}
+.disapproved{
+    color:red;
+}
+.inactive{
+    color:rgb(19, 19, 19);
+}

@@ -1,0 +1,65 @@
+.delete-container{
+    display:flex;
+    flex-direction:column;
+    width:250px;
+    .confirm-delete{
+        margin-top:5px;
+        font-size:.9em;
+        padding:10px;
+        border-radius:10px;
+        animation:confirmDelete .3s forwards linear;
+        overflow:hidden;
+        .yes-no-container{
+            margin-top:10px;
+            .delete-yes{
+                border:1px solid green;
+                background-color:green;
+                color:white;
+                padding:3px;
+                border-radius:5px;
+                margin-inline:5px 10px;
+                cursor: pointer;
+            }
+            .delete-no{
+                border:1px solid red;
+                background-color:red;
+                color:white;
+                padding:3px;
+                border-radius:5px;
+                margin-inline:5px 10px;
+                cursor: pointer;
+            }
+        }
+    }
+    .delete-icon-container{
+        align-self: center;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        border:1px solid;
+        &:hover{
+            border:1px solid red;
+            .delete-icon{
+                font-size:2em;
+            }
+        }
+        .delete-icon{
+            font-size:1.8em;
+            color:red;
+        }
+    }
+
+}
+
+@keyframes confirmDelete{
+    from{
+        transform:scaleY(0);
+        transform-origin: top;
+    }
+    to{
+        transform:scaleY(100%)
+    }
+}

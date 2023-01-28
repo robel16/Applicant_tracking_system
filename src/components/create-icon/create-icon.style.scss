@@ -1,0 +1,38 @@
+.create-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+// .outline {
+//   @extend .create-icon-container;
+//   background-color: white;
+//   transition: 250ms ease transform;
+//   .plus-icon {
+//     color: #192030;
+//     font-size: 1.4em;
+//   }
+//   &:hover {
+//     transform: scale(0.7);
+//     .plus-icon {
+//       transform: scale(1.5);
+//     }
+//   }
+// }
+.fill {
+  @extend .create-icon-container;
+  background-color: #192030;
+  &:hover {
+    background-color: white;
+    .plus-icon {
+      color: #192030;
+    }
+  }
+  .plus-icon {
+    font-size: 25px;
+    color: white;
+  }
+}

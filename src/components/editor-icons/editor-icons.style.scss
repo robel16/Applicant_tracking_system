@@ -1,0 +1,20 @@
+.editor-icons-container{
+    display:inline-block;
+    width:50px;
+    height:auto;
+    .edit-icon{
+        color:#474798;
+        float:left;
+    }
+    .edit-icon{
+        color:#474798;;
+        float:right;
+    }
+    .scale-transform{
+        transform:scale(1);
+        transition:100ms ease;
+        &:hover{
+            transform:scale(1.5)
+        }
+    }
+}

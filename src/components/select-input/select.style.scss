@@ -1,0 +1,58 @@
+.test{
+    margin:100px;
+}
+.select{
+    font-size:15px;
+    font-family: "Quicksand";
+    border-bottom:1px solid;
+    border-left:1px solid;
+    border-radius:10px;
+    padding:5px 10px 5px 10px;
+    width:150px;
+
+    .radio-button{
+        display:none;
+    }
+    .selected-container{
+        position:relative;
+        .select-icon{
+            font-size:20px;
+            position:absolute;
+            right:1%;
+            transition:200ms ease-out transform;
+        }
+
+    }
+    .selectable-container{
+        margin:5px 0;
+        position:relative;
+        &:after{
+            content:'';
+            position:absolute;
+            bottom:0;
+            left:0;
+            height:1px;
+            width:60%;
+            transform:scaleX(0);
+            background-color:black;
+            transition:50ms linear;
+        }
+        &:hover:after{
+            transform:scaleX(1)
+        }
+    }
+    .selected{
+        display:inline-block;
+        position:relative;
+        margin:0 0 5px 10px;
+        font-size:20px;
+        cursor:pointer;
+       
+    }
+    
+    .select-icon-reverse{
+        transform:rotate(180deg)
+    }
+    
+}
+

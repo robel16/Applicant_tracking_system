@@ -1,0 +1,42 @@
+.login-container {
+  position: relative;
+  font-family: inter;
+  height: 99vh;
+
+  .bg-svg {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+  }
+  .bg-svg1 {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+  }
+  .login-header {
+    margin: 30px 0 0 50px;
+    font-size: 33px;
+  }
+  .mmcy {
+    color: black;
+    font-family: inter;
+  }
+  .tech {
+    color: #ff694b;
+  }
+  .input-container {
+    position: relative;
+    margin: 80px 0 0 100px;
+    width: 200px;
+    z-index: 2;
+    p {
+      font-size: 12px;
+      float: right;
+      color: #5e7bc3;
+    }
+  }
+
+  .btn-mg {
+    margin-top: 25px;
+  }
+}
