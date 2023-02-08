@@ -15,7 +15,7 @@ app.use("/api/routes", routesurl);
 //db config
 dotenv.config();
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.connection_url, () => console.log("connected"));
+mongoose.connect(process.env.CONNECTION_URL, () => console.log("connected to database"));
 
 
  
