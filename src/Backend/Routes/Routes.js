@@ -24,17 +24,10 @@ router.use((req,res,next)=>{
   console.log(req.body,'@',Date.now());
   next();
 })
-router.get('/work',(req,res)=>{
-  res.send("this is the working route");
-})
 router.delete('/:id',(req,res)=>{
   res.json({mssg:'deleted sucessfully'})
 })
 
-router.get("/welcome",(req,res)=>{
-    res.send("welcome").then((res)=>res.json)
-    .catch((err)=>console.log("error occured",err.message))
-    return res;
-})
+
 
 module.exports = router;

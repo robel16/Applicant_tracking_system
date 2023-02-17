@@ -27,6 +27,27 @@ const Signup = () => {
     const { name, value } = event.target;
     setFormFields({ ...signupFormFields, [name]: value });
   };
+  const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState("");
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  setIsLoading(true);
+
+  try {
+    const result = await axios.post("/api/applicant", {
+      fullname: fullname.body,
+     
+    });
+
+    console.log(result);
+  } catch (error) {
+    setError(error.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   //handles the login form
   //   const Handleclick = async (event) => {
@@ -56,7 +77,7 @@ const Signup = () => {
         </div>
 
         <div className="input-containers absolute mt-10 ml-8 mb-0 mr-24 z-10 w-52  ">
-          <form className="relative   ">
+          <form className="relative   " onSubmit={handleSubmit}>
             <FormInput
               label="fullname"
               value={fullname}

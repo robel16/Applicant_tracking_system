@@ -66,7 +66,7 @@ const Navigation = () => {
   };
   return (
     // nav
-    <div className=" flex  flex-row  w-100 scrollbar-hide   ">
+    <div className=" flex  flex-row  w-100 h-screen    ">
       {/* nav container */}
       <div className="bg-cust-primary h-screen w-1/6   flex flex-col ">
         {/* nav-header */}

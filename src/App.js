@@ -13,15 +13,15 @@ import Homepage from "./routes/Homepage/Homepage.component";
 
 import create from "zustand";
 import SignupForm from "./routes/SignupForm/Signup.component";
-import Applicants from "./routes/Applicants/Applicants";
-
+import Applicant from "./routes/Applicants/Applicant";
+import Joblist from "./routes/Joblist/Joblist.route";
 const useTestStore = create((set) => ({
   value: 0,
   increase: () => set((state) => ({ value: state.value + 1 })),
   decrease: () => set((state) => ({ value: state.value - 1 })),
 }));
 
-const user = false;
+const user = true;
 
 const App = () => {
   return (
@@ -36,7 +36,8 @@ const App = () => {
           <Route path="EditJob/:title" element={<EditJob />} />
           <Route path=":title" element={<JobDetail />} />
           <Route path="/application" element={<Application />} />
-          <Route path="/applicants" element={<Applicants/>}/>
+          <Route path="/Applicant" element={<Applicant/>}/>
+          <Route path="/joblist" element={<Joblist/>} />
         </Route>
       ) : (
         <Route path="/" element={<Homepage />} />
