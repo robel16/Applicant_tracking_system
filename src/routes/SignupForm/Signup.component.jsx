@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "react-router-dom";
 import FormInput from "../../components/Form/form";
 import { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
@@ -12,55 +11,44 @@ import axios from "axios";
 
 import { useUserTokenStore } from "../../store/store";
 const Signup = () => {
-  const defaultFormFields = {
-    fullname: "",
-    username: "",
-    password: "",
-    email: "",
-  };
+  
+   const [fullname, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [signupFormFields, setFormFields] = useState(defaultFormFields);
-  const { fullname, username, email, password } = signupFormFields;
 
-  const onChangeHandler = (event) => {
-    console.log("fired");
-    const { name, value } = event.target;
-    setFormFields({ ...signupFormFields, [name]: value });
-  };
-  const [isLoading, setIsLoading] = useState(false);
-const [error, setError] = useState("");
+  // const onChangeHandler = (event) => {
+  //   console.log("fired");
+  //   const { name, value } = event.target;
+  //   setFormFields({ ...signupFormFields, [name]: value });
+    
+  // };
+ 
+const handleSubmit = async (e) => {
+ e.preventDefault();
+     const formData = {email,  fullname,password, username,  };
+    // try {
+    //   const response = await axios.post('http://localhost:4000/api/applicant', {fields:formData});
+    //   console.log(response.data); // or do something else with the response
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    await  axios
+      .post("http://localhost:4000/api/applicant", {applicant: formData})
+      .then((response) => {
+        console.log(response.data);
+       
+      })
+      .catch((error) => {
+        console.error(error);
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  setIsLoading(true);
-
-  try {
-    const result = await axios.post("/api/applicant", {
-      fullname: fullname.body,
-     
-    });
-
-    console.log(result);
-  } catch (error) {
-    setError(error.message);
-  } finally {
-    setIsLoading(false);
-  }
+      });
+    // console.log(formData)
 };
 
 
-  //handles the login form
-  //   const Handleclick = async (event) => {
-  //     event.preventDefault();
-
-  //     let result = await axios.post("https://rekebot2.mmcytech.com/auth/login", {
-  //       email: "dawit.a@mmcytech.com",
-  //       password: "password",
-  //     });
-
-  //     setUserToken(result.data.token);
-  //     console.log(result);
-  //   };
+  
 
   return (
     <div className="flex absolutes justify-center">
@@ -82,7 +70,7 @@ const handleSubmit = async (event) => {
               label="fullname"
               value={fullname}
               name="fullname"
-              onChange={onChangeHandler}
+              onChange={(e)=>setFullName(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -90,7 +78,7 @@ const handleSubmit = async (event) => {
               label="username"
               value={username}
               name="username"
-              onChange={onChangeHandler}
+              onChange={(e)=>setUsername(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -98,7 +86,7 @@ const handleSubmit = async (event) => {
               label="Email"
               value={email}
               name="email"
-              onChange={onChangeHandler}
+              onChange={(e)=>setEmail(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -107,7 +95,7 @@ const handleSubmit = async (event) => {
               type="password"
               name="password"
               value={password}
-              onChange={onChangeHandler}
+              onChange={(e)=>setPassword(e.target.value)}
               icon={<CiLock />}
               required
             />

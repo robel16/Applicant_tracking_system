@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const routesurl = require("./Routes/Routes");
-const { options } = require("./Routes/Routes");
+
 //app config
 
 const app = express();
@@ -24,9 +24,6 @@ app.use("/api/routes", routesurl);
 //  mongoose.connect(process.env.CONNECTION_URL, 
 //   () => console.log("connected to database")
 //   );
-
- 
-  
 async function connectToDatabase() {
   try {
     await mongoose.connect(`mongodb+srv://admin:admin2023@cluster0.2bhecal.mongodb.net/ATSDB?retryWrites=true&w=majority`);

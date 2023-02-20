@@ -17,7 +17,7 @@ const [joblists,setJoblists]=useState([])
 
 
  const fetchjoblists=()=>{ 
-         const res=  axios.get('https://rekebot2.mmcytech.com/job').then(
+         const res=  axios.get('http://localhost:4000/api/position').then(
             res=>{
                 //  console.log(res.data.positions)
               setJoblists(res.data.positions)

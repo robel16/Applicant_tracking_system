@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/button.component";
 import LoginForm from "../LoginForm/login.route";
 import Signup from "../SignupForm/Signup.component";
+import Applicantslogin from"../Applicantslogin/Applicant.login"
 import Image from "../../img/illustration-intro.svg";
 import avatar1 from "../../img/avatar-ali.png";
 import avatar2 from "../../img/avatar-anisha.png";
@@ -14,6 +15,13 @@ import logo2 from "../../img/icon-instagram.svg";
 import logo3 from "../../img/icon-twitter.svg";
 
 const Homepage = () => {
+
+  const recruitorclick=()=>{
+
+  }
+  const applicantclick=()=>{
+
+  }
   const navigate = useNavigate();
   let img =
     "https://www.mmcytech.com/wp-content/uploads/2022/01/MMCY-Tech_New-white_1.png";
@@ -28,9 +36,10 @@ const Homepage = () => {
             {/* menu items */}
 
             <Button className="btn-mgs  " onClick={() => navigate("login")}>
-              log in
+              log in as a recruitor
             </Button>
-            <Button onClick={() => navigate("sign-up")}> sign up</Button>
+            <Button onClick={() => navigate("Applicant%-login12")}> login as applicant</Button>
+            
           </div>
         </div>
       </div>
@@ -43,11 +52,13 @@ const Homepage = () => {
             <p className="max-w-sm text-center text-darkGrayishBlue md:text-left">
               manage makes it simple for software teams to plan day-to-day tasks
               while keeping the larger team goals in view
-            </p>
+            </p> 
+        
           </div>
-
+   <div>
+   </div>
           <div>
-            <img className="md:w-1\2" src={Image} alt="" />
+            <img className="" src={Image} alt="" />
           </div>
         </div>
       </section>
@@ -190,12 +201,12 @@ const Homepage = () => {
             </div>
           </div>
           <div className="my-16">
-            <a
+            {/* <a
               href=""
               className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-darkBlue"
             >
               Get started
-            </a>
+            </a> */}
           </div>
         </div>
       </section>
@@ -207,11 +218,12 @@ const Homepage = () => {
           </h2>
           <div>
             <a
-              href="#"
+              href="sign-up"
               className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
             >
               Get started
             </a>
+             
           </div>
         </div>
       </section>

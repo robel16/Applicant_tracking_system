@@ -15,20 +15,21 @@ import create from "zustand";
 import SignupForm from "./routes/SignupForm/Signup.component";
 import Applicant from "./routes/Applicants/Applicant";
 import Joblist from "./routes/Joblist/Joblist.route";
+import Applicantslogin from "./routes/Applicantslogin/Applicant.login";
 const useTestStore = create((set) => ({
   value: 0,
   increase: () => set((state) => ({ value: state.value + 1 })),
   decrease: () => set((state) => ({ value: state.value - 1 })),
 }));
 
-const user = true;
+const user = false;
 
 const App = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginForm />} />
       <Route path="/sign-up" element={<SignupForm />} />
-
+       <Route path="/Applicant%-login12" element={<Applicantslogin />} />
       {user ? (
         <Route path="/" element={<Navigation />}>
           <Route index element={<Jobs />} />

@@ -1,6 +1,5 @@
 import FormInput from "../../components/Form/form";
 import { useState } from "react";
-import "./login.style.scss";
 import { AiOutlineUser } from "react-icons/ai";
 import { CiLock } from "react-icons/ci";
 import Button from "../../components/Button/button.component";
@@ -16,7 +15,7 @@ const defaultFormFields = {
   password: "",
 };
 
-const LoginForm = () => {
+const Applicantloginform = () => {
   const setUserToken = useUserTokenStore((state) => state.setUsertoken);
 
   const token = useUserTokenStore((state) => state.Usertoken);
@@ -33,17 +32,11 @@ const LoginForm = () => {
   //handles the login form
   const Handleclick = async (event) => {
     event.preventDefault();
-console.log(loginFormFields)
-    // let result = await axios.post("https://rekebot2.mmcytech.com/auth/login", {
-    //   email: "dawit.a@mmcytech.com",
-    //   password: "password",
-    // });
 
-    // setUserToken(result.data.token);
-    // console.log(result);
-     await  axios
+      await  axios
       .post("http://localhost:4000/api/applicant/login", {applicant: loginFormFields})
       .then((response) => {
+        
         console.log(response.data);
        
       })
@@ -51,6 +44,7 @@ console.log(loginFormFields)
         console.error(error);
 
       });
+
   };
 
   return (
@@ -62,7 +56,7 @@ console.log(loginFormFields)
         </span>
         <span className="mmcys text-black font-serif text-2xl">
           {" "}
-          Recruitment
+          Applicant login
         </span>
       </div>
 
@@ -96,4 +90,4 @@ console.log(loginFormFields)
     </div>
   );
 };
-export default LoginForm;
+export default Applicantloginform;
