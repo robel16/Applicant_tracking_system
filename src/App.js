@@ -22,14 +22,14 @@ const useTestStore = create((set) => ({
   decrease: () => set((state) => ({ value: state.value - 1 })),
 }));
 
-const user = false;
+const user = true;
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/login" element={<LoginForm />} />
+      <Route path="/login-Applicant" element={<LoginForm />} />
       <Route path="/sign-up" element={<SignupForm />} />
-       <Route path="/Applicant%-login12" element={<Applicantslogin />} />
+       <Route path="/Applicant-login" element={<Applicantslogin />} />
       {user ? (
         <Route path="/" element={<Navigation />}>
           <Route index element={<Jobs />} />

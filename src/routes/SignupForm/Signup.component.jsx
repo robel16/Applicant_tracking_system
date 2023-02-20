@@ -38,7 +38,8 @@ const handleSubmit = async (e) => {
       .post("http://localhost:4000/api/applicant", {applicant: formData})
       .then((response) => {
         console.log(response.data);
-       
+       window.location.href="/login"
+      alert("registered successfully")
       })
       .catch((error) => {
         console.error(error);
@@ -48,7 +49,18 @@ const handleSubmit = async (e) => {
 };
 
 
-  
+  //handles the login form
+  //   const Handleclick = async (event) => {
+  //     event.preventDefault();
+
+  //     let result = await axios.post("https://rekebot2.mmcytech.com/auth/login", {
+  //       email: "dawit.a@mmcytech.com",
+  //       password: "password",
+  //     });
+
+  //     setUserToken(result.data.token);
+  //     console.log(result);
+  //   };
 
   return (
     <div className="flex absolutes justify-center">

@@ -33,7 +33,7 @@ const LoginForm = () => {
   //handles the login form
   const Handleclick = async (event) => {
     event.preventDefault();
-console.log(loginFormFields)
+
     // let result = await axios.post("https://rekebot2.mmcytech.com/auth/login", {
     //   email: "dawit.a@mmcytech.com",
     //   password: "password",
@@ -42,7 +42,7 @@ console.log(loginFormFields)
     // setUserToken(result.data.token);
     // console.log(result);
      await  axios
-      .post("http://localhost:4000/api/applicant/login", {applicant: loginFormFields})
+      .post("http://localhost:4000/api/auth/login", {applicant: loginFormFields})
       .then((response) => {
         console.log(response.data);
        

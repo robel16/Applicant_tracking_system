@@ -16,7 +16,7 @@ app.use("/api/applicant", require("./Routes/applicants"));
 app.use("/api/application", require("./Routes/applications"));
 app.use("/api/position", require("./Routes/positions"));
 app.use("/api/recruiter", require("./Routes/recruiter"));
-app.use("/api/routes", routesurl);
+app.use("/api/auth", require("./Routes/auth"));
 
 
 //db config

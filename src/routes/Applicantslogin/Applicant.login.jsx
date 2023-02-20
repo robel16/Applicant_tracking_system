@@ -34,14 +34,15 @@ const Applicantloginform = () => {
     event.preventDefault();
 
       await  axios
-      .post("http://localhost:4000/api/applicant/login", {applicant: loginFormFields})
+      .post("http://localhost:4000/api/auth/userLogin", {username:username,password:password})
       .then((response) => {
         
-        console.log(response.data);
-       
+      setUserToken(response.data.token)
+     window.location.href="/Applicant"
+     alert("logged in successfully")
       })
       .catch((error) => {
-        console.error(error);
+        alert(error.response.data.message);
 
       });
 

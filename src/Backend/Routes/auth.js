@@ -6,10 +6,10 @@ const Applicant = require("../models/applicant");
 const { verifyToken, generateToken } = require("../util");
 
 router.post("/login", async (req, res) => {
-  let { email, password } = req.body;
-  if (!email || !password) return res.status(400).json({ message: "Invalid Information" });
+  let { username, password } = req.body;
+  if (!username || !password) return res.status(400).json({ message: "Invalid Information" });
 
-  let recruiter = await Recruiter.findOne({ email });
+  let recruiter = await Recruiter.findOne({ username });
 
   if (!recruiter) return res.status(401).json({ message: "Incorrect Information" });
 
@@ -19,13 +19,13 @@ router.post("/login", async (req, res) => {
 
   if (!validPassword) return res.status(401).json({ message: "Incorrect Information" });
 
-  let token = generateToken(recruiter._id, email, recruiter.roles);
+  let token = generateToken(recruiter._id, username, recruiter.roles);
 
   return res.status(200).json({
     token,
     first_name: recruiter.first_name,
     last_name: recruiter.last_name,
-    email,
+    username,
     roles: ["recruiter"],
     id: recruiter._id,
   });

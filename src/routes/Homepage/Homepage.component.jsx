@@ -38,7 +38,7 @@ const Homepage = () => {
             <Button className="btn-mgs  " onClick={() => navigate("login")}>
               log in as a recruitor
             </Button>
-            <Button onClick={() => navigate("Applicant%-login12")}> login as applicant</Button>
+            <Button onClick={() => navigate("Applicant-login")}> login as applicant</Button>
             
           </div>
         </div>
