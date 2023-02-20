@@ -39,7 +39,7 @@ const Applicantloginform = () => {
         
       setUserToken(response.data.token)
      window.location.href="/Applicant"
-     alert("logged in successfully")
+   response.send('logged in successfully')
       })
       .catch((error) => {
         alert(error.response.data.message);

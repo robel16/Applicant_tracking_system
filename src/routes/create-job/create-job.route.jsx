@@ -91,7 +91,8 @@ const instructions = steps[steps.length - 1];
   await  axios
       .post("http://localhost:4000/api/position", {position: formData})
       .then((response) => {
-        console.log(response.data);
+       response.send('uploaded successfully')
+       console.log(formData)
        
       })
       .catch((error) => {

@@ -4,8 +4,9 @@ import { useState } from "react";
 
 const Navigation = () => {
   const { pathname } = useLocation();
-  // console.log(pathname);
-  const width = window.innerWidth;
+  const logOut=()=>{
+    localStorage.removeItem('userToken')
+  }
   const switchLinks = (pathname) => {
     switch (pathname) {
       case "/":
@@ -112,8 +113,8 @@ const Navigation = () => {
               </Link>
             </ul>
           </div>
-          <div className="bg-cust-primary  p-5 text-white text-xl mb-4 ml-6 hover:text-cust-secondary  ">
-            <a href="#">Logout</a>
+          <div className="bg-cust-primary  p-5 text-white text-xl mb-4 ml-6 hover:text-cust-secondary cursor-pointer ">
+             <h1 onClick={logOut}>Logout</h1>
           </div>
         </div>
       </div>

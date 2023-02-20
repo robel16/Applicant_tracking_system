@@ -35,10 +35,10 @@ const Homepage = () => {
           <div className=" md:flex space-x-6">
             {/* menu items */}
 
-            <Button className="btn-mgs  " onClick={() => navigate("login")}>
+            <Button className="btn-mgs  " onClick={() => navigate("login-Applicant")}>
               log in as a recruitor
             </Button>
-            <Button onClick={() => navigate("Applicant-login")}> login as applicant</Button>
+            <Button onClick={() => navigate("recruitor-Applicant")}> login as applicant</Button>
             
           </div>
         </div>

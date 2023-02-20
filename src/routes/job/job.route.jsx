@@ -10,7 +10,7 @@ const Jobs = () => {
       <h1 className=" jobs-titles mt-12 mr-auto mb-5 ml-2 italic text-3xl  ">
         Jobs
       </h1>
-      <div className="create-jobs relative flex justify-end mt-1 mr-16 mb-5 ml-1 right-8">
+      <div className="create-jobs relative flex justify-end mt-1 mr-16 mb-5 ml-1 right-8 bg-blue-300">
         <h1 className="absolute inline text-2xl right-14 top-2">create job</h1>
         <Link to="createjob">
           {" "}

@@ -14,7 +14,7 @@ alert("are you sure you want to delete")
     
 }
 
-const parentref=useRef(); 
+
 const Displayjobs=(props)=>{
 
 const Handleclick=()=>{
@@ -24,7 +24,6 @@ const Handleclick=()=>{
 })}
 
 const job=props.job;
-
 const[isCollapsed,setIsCollapsed]=useState(false);  
 
 const truncate=(string,n)=>{
@@ -33,16 +32,16 @@ const truncate=(string,n)=>{
 const [text, setText] = useState(truncate(`${job.instructions} `, 40));
 const classname = " md:text-xl font-normal sm:text-sm ";
 
-let stages = job.stages.map(stage =>
+let steps = job.steps.map(step =>
     
 <>
 
-   { !isCollapsed && <div className={ isCollapsed ? `flex items-center transition ease-out duration-300 space-x-2  flex-row` :'flex relative items-center   md:flex-row  sm:flex-col   '}     >
+   { !isCollapsed && <div className={ isCollapsed ? `flex bg-blue-400 items-center transition ease-out duration-300 space-x-2  flex-row` :'flex relative items-center   md:flex-row  sm:flex-col   '}     >
 <div className='flex relative md:top-2 md:p-2 justify-center items-center   flex-row'>
-    <span className=' text-xl font-semibold md:w-10  sm:w-10 sm:text-sm     '  > {stage.type}</span>
+    <span className=' text-xl font-semibold md:w-10  sm:w-10 sm:text-sm     '  > {step.type}</span>
     </div>
      <div className='flex relative md:top-1 md:p-2 justify-center items-center  ml-6 mt-2 '>
-    <span className=' '>{stage.prompt}</span>
+    <span className=' '>{step.prompt}</span>
      </div> 
     </div>}
 
@@ -71,9 +70,9 @@ let stages = job.stages.map(stage =>
                           </div>
                                }
             <span className='text-3xl ml-4 top-[11%] relative font-semibold'>Title: </span>
-            <span  className=" top-[11%] relative  p-1 sm:p-1  text-xl  ">{job.name}</span> 
+            <span  className=" top-[11%] relative  p-1 sm:p-1  text-xl  ">{job.title}</span> 
          <div className={isCollapsed ? ` relative sm:flex sm:flex-row md:-right-[38%] top-20 md:text-xl font-semibold sm:-left-[0%] sm:ml-60` :` relative md:-left-[25%] sm:-left-[45%] sm:h-9 top-64 flex  text-xl font-semibold  sm:top-[60%] sm:flex sm:flex-col`}>
-    <h2 className='sm:left-3 '>stages {job.stages.length}</h2>
+    <h2 className='sm:left-3 '>stages {job.steps.length}</h2>
 </div>
          <div className=  { isCollapsed ? ` absolute top-[35%] ml-24 text-md transition delay-500   ` :`absolute top-[35%] ml-24 text-md `}   >
             <h1 className='font-semibold text-2xl sm:mt-4 '>Job instructions</h1> 
@@ -83,7 +82,7 @@ let stages = job.stages.map(stage =>
 </span> 
          </div>
                 <div className=' relative top-[55%] right-[20%]    sm:w-auto sm:h-auto  '>
-                     {stages}  
+                     {steps}  
                 </div>
                 
 </div>

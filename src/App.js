@@ -27,7 +27,7 @@ const user = true;
 const App = () => {
   return (
     <Routes>
-      <Route path="/login-Applicant" element={<LoginForm />} />
+      <Route path="/recruitor-Applicant" element={<LoginForm />} />
       <Route path="/sign-up" element={<SignupForm />} />
        <Route path="/Applicant-login" element={<Applicantslogin />} />
       {user ? (
