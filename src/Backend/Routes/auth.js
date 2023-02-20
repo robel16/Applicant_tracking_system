@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const Recruiter = require("../models/recruiter");
+const Applicant = require("../models/applicant");
 const { verifyToken, generateToken } = require("../util");
 
 router.post("/login", async (req, res) => {
@@ -27,6 +28,30 @@ router.post("/login", async (req, res) => {
     email,
     roles: ["recruiter"],
     id: recruiter._id,
+  });
+});
+
+router.post("/userLogin", async (req, res) => {
+  let { username, password } = req.body;
+  if (!username || !password) return res.status(400).json({ message: "Invalid Information" });
+
+  let applicant = await Applicant.findOne({ username });
+
+  if (!applicant) return res.status(401).json({ message: "Incorrect Information" });
+
+  let hashedPassword = applicant.password;
+
+  let validPassword = await bcrypt.compare(password, hashedPassword);
+
+  if (!validPassword) return res.status(401).json({ message: "Incorrect Information" });
+
+  let token = generateToken(applicant._id, username);
+
+  return res.status(200).json({
+    token,
+    fullname: applicant.fullname,
+    username,
+    id: applicant._id,
   });
 });
 
