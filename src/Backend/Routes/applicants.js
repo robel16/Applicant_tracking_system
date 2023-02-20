@@ -60,15 +60,14 @@ router.post("/", async (req, res) => {
 
 
 router.post("/login", async (req, res) => {
-  let fields = req.body.applicant;
-   let applicant;
-
- applicant =await Applicant.findOne({
+   
+ const applicant =await Applicant.findOne({
   username:req.body.username,
   password:req.body.password
  }) 
  
  if(applicant){
+  generateToken()
   return res.json({status:'ok',applicant:true})
  }else{
   res.json({status:'error',applicant:false})
