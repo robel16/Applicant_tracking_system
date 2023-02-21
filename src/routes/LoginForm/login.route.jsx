@@ -34,18 +34,11 @@ const LoginForm = () => {
   const Handleclick = async (event) => {
     event.preventDefault();
 
-    // let result = await axios.post("https://rekebot2.mmcytech.com/auth/login", {
-    //   email: "dawit.a@mmcytech.com",
-    //   password: "password",
-    // });
-
-    // setUserToken(result.data.token);
-    // console.log(result);
      await  axios
-      .post("http://localhost:4000/api/auth/login", {applicant: loginFormFields})
+      .post("http://localhost:4000/api/auth/login", {recruiter: loginFormFields})
       .then((response) => {
         console.log(response.data);
-       
+       setUserToken(response.data.token)
       })
       .catch((error) => {
         console.error(error);
@@ -85,7 +78,6 @@ const LoginForm = () => {
             icon={<CiLock />}
             required
           />
-          <p>Forget Password?</p>
           <Button className="btn-mgs  " onClick={Handleclick}>
             Login
           </Button>

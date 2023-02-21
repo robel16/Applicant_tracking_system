@@ -3,11 +3,11 @@ import Joblist from '../Joblist/Joblist.route'
 import Button from '../../components/Button/button.component'
  import axios from 'axios'
  import { useEffect,useState } from 'react'
- import JoblistCard from '../../components/JoblistCard/JoblistCard.component'
+import Applicantjoblistcard from "../../components/Applicant_joblistCard/ApplicantJoblist.component"
 const Applicant=()=> {
 const [joblists,setJoblists]=useState([])
  const fetchjoblists=()=>{ 
-         const res=  axios.get('https://rekebot2.mmcytech.com/job').then(
+         const res=  axios.get('http://localhost:4000/api/position').then(
             res=>{
                 //  console.log(res.data.positions)
               setJoblists(res.data.positions)
@@ -26,7 +26,7 @@ useEffect(()=>{
 
 
 
-let jobs = joblists.map((job) => <JoblistCard job={job}/>)
+let jobs = joblists.map((job) =><Applicantjoblistcard job={job}/> )
 // console.log(jobs)
 return (
 <>

@@ -16,6 +16,7 @@ import SignupForm from "./routes/SignupForm/Signup.component";
 import Applicant from "./routes/Applicants/Applicant";
 import Joblist from "./routes/Joblist/Joblist.route";
 import Applicantslogin from "./routes/Applicantslogin/Applicant.login";
+import Recruiter from "./routes/Recruitor/Recruitorsignup.route"
 const useTestStore = create((set) => ({
   value: 0,
   increase: () => set((state) => ({ value: state.value + 1 })),
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/application" element={<Application />} />
           <Route path="/Applicant" element={<Applicant/>}/>
           <Route path="/joblist" element={<Joblist/>} />
+             <Route path="/recruiter-register" element={<Recruiter/>}></Route>
         </Route>
       ) : (
         <Route path="/" element={<Homepage />} />

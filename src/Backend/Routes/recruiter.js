@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Recruiter = require("../models/recruiter");
 const { allowedRoles, verifyToken } = require("../util");
-
+const bcrypt=require("bcrypt");
 router.get("/", verifyToken, allowedRoles(["recruiter"]), async (req, res) => {
   let recruiters = await Recruiter.find();
   return res.status(200).json({ recruiters });
@@ -17,7 +17,7 @@ router.get("/:id", verifyToken, allowedRoles(["recruiter"]), async (req, res) =>
 router.post("/",  async (req, res) => {
   let fields = req.body.recruiter;
   let recruiter;
-
+fields.password=await bcrypt.hash(fields.password,10)
   try {
     recruiter = new Recruiter(fields);
     await recruiter.save();
