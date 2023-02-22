@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/" element={<Navigation />}>
           <Route index element={<Jobs />} />
           <Route path="CreateJob" element={<CreateJob />} />
-          <Route path="EditJob/:title" element={<EditJob />} />
+          <Route path="EditJob/" element={<EditJob />} />
           <Route path=":title" element={<JobDetail />} />
           <Route path="/application" element={<Application />} />
           <Route path="/Applicant" element={<Applicant/>}/>

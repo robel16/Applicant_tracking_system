@@ -36,12 +36,12 @@ useEffect(()=>{
 
 
 
-let jobs = joblists.map((job) => <JoblistCard job={job}/>)
+let jobs = joblists.map((job,_id) => <JoblistCard job={job} key={_id}/>)
 // console.log(jobs)
 return (
 <>
 
-<div className='flex flex-col' key={jobs._id}>
+<div className='flex flex-col' >
     {jobs}
     </div>
     </>

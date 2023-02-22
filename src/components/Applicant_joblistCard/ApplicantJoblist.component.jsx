@@ -32,6 +32,12 @@ const [success, setSuccess] = useState(false);
   const HandleFileInputChange = (event) => {
     setFile(event.target.files[0]);
   };
+  const Test=()=>{
+    <div>
+       { localStorage.getItem(file)}
+    </div>
+  
+  }
 
 const truncate=(string,n)=>{
     return string?.length>n ? string.substr(0,n-1) + '...': string;
@@ -70,6 +76,7 @@ let steps = job.steps.map(step =>
                 !isCollapsed && (<>
                     <div className='bottom-[20%] '>
                      <Button onClick={Handlapply}> Apply </Button>
+                  
                     </div>
                     <div className='flex'>
                         {  
@@ -84,7 +91,7 @@ let steps = job.steps.map(step =>
             !opened && (
                 <div>
                   <Button onClick={HandleUploadClick}>Submit</Button>
-                {success && <p className='text-green-400 text-sm relative'> applied successfull {file.name}</p>}  
+                {success && <p className='flex flex-col text-sm relative'> applied successfull {file.name}</p>}  
                 </div>
                 
             )
