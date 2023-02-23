@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
-
-const applicantData=new mongoose.Schema({
+const applicantDataSchema=new mongoose.Schema({
     applicant_id:{
          type: mongoose.SchemaTypes.ObjectId,
     ref: "Applicant",
@@ -16,4 +14,4 @@ const applicantData=new mongoose.Schema({
 
 })
 
-module.exports=mongoose.model("ApplicantData",applicantData)
+module.exports=mongoose.model("ApplicantData",applicantDataSchema)
