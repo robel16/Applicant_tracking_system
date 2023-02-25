@@ -10,41 +10,37 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useUserTokenStore } from "../../store/store";
 const Signup = () => {
-  
-   const [first_name, setfirst_name] = useState('');
- const [last_name,setlast_name] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [first_name, setfirst_name] = useState("");
+  const [last_name, setlast_name] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // const onChangeHandler = (event) => {
   //   console.log("fired");
   //   const { name, value } = event.target;
   //   setFormFields({ ...signupFormFields, [name]: value });
-    
+
   // };
- 
-const handleSubmit = async (e) => {
- e.preventDefault();
-     const formData = {email,  first_name,last_name,password, username,  };
-  
-    await  axios
-      .post("http://localhost:4000/api/recruiter", {recruiter: formData})
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = { email, first_name, last_name, password, username };
+
+    await axios
+      .post("http://localhost:4000/api/recruiter", { recruiter: formData })
       .then((response) => {
         console.log(response.data);
 
-      alert("registered successfully")
+        alert("registered successfully");
+        window.location.href = "/recruitor-login";
+        response.send("welcome to the page");
       })
       .catch((error) => {
         console.error(error);
-
       });
     // console.log(formData)
-};
-
-
-
+  };
 
   return (
     <div className="flex absolutes justify-center">
@@ -56,7 +52,7 @@ const handleSubmit = async (e) => {
           </span>
           <span className="mmcys text-black font-serif text-2xl m-6">
             {" "}
-            sign up as applicant
+            Recrruitor registration
           </span>
         </div>
 
@@ -66,15 +62,15 @@ const handleSubmit = async (e) => {
               label="firstname"
               value={first_name}
               name="fullname"
-              onChange={(e)=>setfirst_name(e.target.value)}
+              onChange={(e) => setfirst_name(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
-               <FormInput
+            <FormInput
               label="lastname"
               value={last_name}
               name="fullname"
-              onChange={(e)=>setlast_name(e.target.value)}
+              onChange={(e) => setlast_name(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -82,7 +78,7 @@ const handleSubmit = async (e) => {
               label="username"
               value={username}
               name="username"
-              onChange={(e)=>setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -90,7 +86,7 @@ const handleSubmit = async (e) => {
               label="Email"
               value={email}
               name="email"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -99,7 +95,7 @@ const handleSubmit = async (e) => {
               type="password"
               name="password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               icon={<CiLock />}
               required
             />

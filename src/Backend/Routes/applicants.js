@@ -2,10 +2,10 @@ const express = require("express");
 
 const router = express.Router();
 const Applicant = require("../models/applicant");
-const { verifyToken,generateToken } = require("../util");
-const bcrypt=require("bcrypt");
-const { FaPage4 } = require("react-icons/fa");
-router.get("/",verifyToken, async (req, res) => {
+const { verifyToken, generateToken } = require("../util");
+const bcrypt = require("bcrypt");
+
+router.get("/", verifyToken, async (req, res) => {
   let applicants = await Applicant.find();
   return res.status(200).json({ applicants });
 });
@@ -16,40 +16,32 @@ router.get("/:id", verifyToken, async (req, res) => {
   return res.status(200).json({ applicant });
 });
 
-
 // This can be used as SignUp
 router.post("/", async (req, res) => {
-  
   let fields = req.body.applicant;
-   let applicant;
- fields.password = await bcrypt.hash(fields.password, 10);
+  let applicant;
+  fields.password = await bcrypt.hash(fields.password, 10);
   try {
-   applicant = new Applicant(fields);
+    applicant = new Applicant(fields);
     await applicant.save();
-    
-   } catch (error) {
-    return res.status(400).json({ status:'error' });
-  } 
+  } catch (error) {
+    return res.status(400).json({ status: "error" });
+  }
 
   return res.status(200).json(applicant);
-
 });
 
-
-
 router.post("/login", async (req, res) => {
-   
- const applicant =await Applicant.findOne({
-  username:req.body.username,
-  password:req.body.password
- }) 
- 
- if(applicant){
-  return res.json({status:'ok',applicant:true})
- }else{
-  res.json({status:'error',applicant:false})
- }
+  const applicant = await Applicant.findOne({
+    username: req.body.username,
+    password: req.body.password,
+  });
 
+  if (applicant) {
+    return res.json({ status: "ok", applicant: true });
+  } else {
+    res.json({ status: "error", applicant: false });
+  }
 });
 
 router.patch("/", verifyToken, async (req, res) => {

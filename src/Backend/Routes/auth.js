@@ -7,17 +7,20 @@ const { verifyToken, generateToken } = require("../util");
 
 router.post("/login", async (req, res) => {
   let { username, password } = req.body;
-  if (!username || !password) return res.status(400).json({ message: "Invalid Information" });
+  if (!username || !password)
+    return res.status(400).json({ message: "Invalid Information" });
 
   let recruiter = await Recruiter.findOne({ username });
 
-  if (!recruiter) return res.status(401).json({ message: "Incorrect Information" });
+  if (!recruiter)
+    return res.status(401).json({ message: "Incorrect Information" });
 
   let hashedPassword = recruiter.password;
 
   let validPassword = await bcrypt.compare(password, hashedPassword);
 
-  if (!validPassword) return res.status(401).json({ message: "Incorrect Information" });
+  if (!validPassword)
+    return res.status(401).json({ message: "Incorrect Information" });
 
   let token = generateToken(recruiter._id, username, recruiter.roles);
 
@@ -33,17 +36,20 @@ router.post("/login", async (req, res) => {
 
 router.post("/userLogin", async (req, res) => {
   let { username, password } = req.body;
-  if (!username || !password) return res.status(400).json({ message: "Invalid Information" });
+  if (!username || !password)
+    return res.status(400).json({ message: "Invalid Information" });
 
   let applicant = await Applicant.findOne({ username });
 
-  if (!applicant) return res.status(401).json({ message: "Incorrect Information" });
+  if (!applicant)
+    return res.status(401).json({ message: "Incorrect Information" });
 
   let hashedPassword = applicant.password;
 
   let validPassword = await bcrypt.compare(password, hashedPassword);
 
-  if (!validPassword) return res.status(401).json({ message: "Incorrect Information" });
+  if (!validPassword)
+    return res.status(401).json({ message: "Incorrect Information" });
 
   let token = generateToken(applicant._id, username);
 
@@ -57,26 +63,35 @@ router.post("/userLogin", async (req, res) => {
 
 router.post("/changePassword", verifyToken, async (req, res) => {
   let { oldPassword, newPassword } = req.body;
-  if (!oldPassword || !newPassword) return res.status(400).json({ message: "Invalid Information" });
+  if (!oldPassword || !newPassword)
+    return res.status(400).json({ message: "Invalid Information" });
 
   if (oldPassword == newPassword)
-    return res.status(401).json({ message: "Old password can not be the same as new password" });
+    return res
+      .status(401)
+      .json({ message: "Old password can not be the same as new password" });
 
   let recruiterId = req.id;
   let applicant = await Recruiter.findById(recruiterId);
-  if (!applicant) return res.status(401).json({ message: "Incorrect Information" });
+  if (!applicant)
+    return res.status(401).json({ message: "Incorrect Information" });
 
   let hashedPassword = applicant.password;
 
   let validPassword = await bcrypt.compare(oldPassword, hashedPassword);
 
-  if (!validPassword) return res.status(401).json({ message: "Old Password Incorrect" });
+  if (!validPassword)
+    return res.status(401).json({ message: "Old Password Incorrect" });
 
-  if (!validatePassword(newPassword)) return res.status(401).json({ message: "New Password Invalid" });
+  if (!validatePassword(newPassword))
+    return res.status(401).json({ message: "New Password Invalid" });
 
   let newHashedPassword = await bcrypt.hash(newPassword, 10);
 
-  await Recruiter.findOneAndUpdate({ _id: recruiterId }, { password: newHashedPassword });
+  await Recruiter.findOneAndUpdate(
+    { _id: recruiterId },
+    { password: newHashedPassword }
+  );
 
   return res.status(200).json({ message: "Password Updated" });
 });

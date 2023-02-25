@@ -33,19 +33,19 @@ const Applicantloginform = () => {
   const Handleclick = async (event) => {
     event.preventDefault();
 
-      await  axios
-      .post("http://localhost:4000/api/auth/userLogin", {username:username,password:password})
+    await axios
+      .post("http://localhost:4000/api/auth/userLogin", {
+        username: username,
+        password: password,
+      })
       .then((response) => {
-        
-      setUserToken(response.data.token)
-     window.location.href="/Applicant"
-   response.send('logged in successfully')
+        setUserToken(response.data.token);
+        window.location.href = "/applicant-page";
+        response.send("logged in successfully");
       })
       .catch((error) => {
         alert(error.response.data.message);
-
       });
-
   };
 
   return (

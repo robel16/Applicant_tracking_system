@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/button.component";
 import LoginForm from "../LoginForm/login.route";
 import Signup from "../SignupForm/Signup.component";
-import Applicantslogin from"../Applicantslogin/Applicant.login"
+import Applicantslogin from "../Applicantslogin/Applicant.login";
 import Image from "../../img/illustration-intro.svg";
 import avatar1 from "../../img/avatar-ali.png";
 import avatar2 from "../../img/avatar-anisha.png";
@@ -15,13 +15,8 @@ import logo2 from "../../img/icon-instagram.svg";
 import logo3 from "../../img/icon-twitter.svg";
 
 const Homepage = () => {
-
-  const recruitorclick=()=>{
-
-  }
-  const applicantclick=()=>{
-
-  }
+  const recruitorclick = () => {};
+  const applicantclick = () => {};
   const navigate = useNavigate();
   let img =
     "https://www.mmcytech.com/wp-content/uploads/2022/01/MMCY-Tech_New-white_1.png";
@@ -35,11 +30,16 @@ const Homepage = () => {
           <div className=" md:flex space-x-6">
             {/* menu items */}
 
-            <Button className="btn-mgs  " onClick={() => navigate("login-Applicant")}>
+            <Button
+              className="btn-mgs  "
+              onClick={() => navigate("recruitor-login")}
+            >
               log in as a recruitor
             </Button>
-            <Button onClick={() => navigate("recruitor-Applicant")}> login as applicant</Button>
-            
+            <Button onClick={() => navigate("Applicant-login")}>
+              {" "}
+              login as applicant
+            </Button>
           </div>
         </div>
       </div>
@@ -52,11 +52,9 @@ const Homepage = () => {
             <p className="max-w-sm text-center text-darkGrayishBlue md:text-left">
               manage makes it simple for software teams to plan day-to-day tasks
               while keeping the larger team goals in view
-            </p> 
-        
+            </p>
           </div>
-   <div>
-   </div>
+          <div></div>
           <div>
             <img className="" src={Image} alt="" />
           </div>
@@ -223,7 +221,6 @@ const Homepage = () => {
             >
               Get started
             </a>
-             
           </div>
         </div>
       </section>

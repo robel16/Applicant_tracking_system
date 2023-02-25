@@ -11,56 +11,39 @@ import axios from "axios";
 
 import { useUserTokenStore } from "../../store/store";
 const Signup = () => {
-  
-   const [fullname, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [fullname, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // const onChangeHandler = (event) => {
   //   console.log("fired");
   //   const { name, value } = event.target;
   //   setFormFields({ ...signupFormFields, [name]: value });
-    
+
   // };
- 
-const handleSubmit = async (e) => {
- e.preventDefault();
-     const formData = {email,  fullname,password, username,  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = { email, fullname, password, username };
     // try {
     //   const response = await axios.post('http://localhost:4000/api/applicant', {fields:formData});
     //   console.log(response.data); // or do something else with the response
     // } catch (error) {
     //   console.error(error);
     // }
-    await  axios
-      .post("http://localhost:4000/api/applicant", {applicant: formData})
+    await axios
+      .post("http://localhost:4000/api/applicant", { applicant: formData })
       .then((response) => {
         console.log(response.data);
-       window.location.href="/login"
-      alert("registered successfully")
+        window.location.href = "/Applicant-login";
+        alert("registered successfully");
       })
       .catch((error) => {
         console.error(error);
-
       });
     // console.log(formData)
-};
-
-
-  //handles the login form
-  //   const Handleclick = async (event) => {
-  //     event.preventDefault();
-
-  //     let result = await axios.post("https://rekebot2.mmcytech.com/auth/login", {
-  //       email: "dawit.a@mmcytech.com",
-  //       password: "password",
-  //     });
-
-  //     setUserToken(result.data.token);
-  //     console.log(result);
-  //   };
+  };
 
   return (
     <div className="flex absolutes justify-center">
@@ -82,7 +65,7 @@ const handleSubmit = async (e) => {
               label="fullname"
               value={fullname}
               name="fullname"
-              onChange={(e)=>setFullName(e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -90,7 +73,7 @@ const handleSubmit = async (e) => {
               label="username"
               value={username}
               name="username"
-              onChange={(e)=>setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -98,7 +81,7 @@ const handleSubmit = async (e) => {
               label="Email"
               value={email}
               name="email"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               icon={<AiOutlineUser />}
               required
             />
@@ -107,7 +90,7 @@ const handleSubmit = async (e) => {
               type="password"
               name="password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               icon={<CiLock />}
               required
             />
