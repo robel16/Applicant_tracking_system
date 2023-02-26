@@ -22,6 +22,7 @@ router.get(
   }
 );
 
+//get all the filepath
 router.get("/file", async (req, res) => {
   const { id } = req.params;
   try {
