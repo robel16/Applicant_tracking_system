@@ -35,9 +35,9 @@ router.get("/file", async (req, res) => {
       return res.status(404).send("File not found");
     }
 
-    if (req.user._id.toString() !== position.recruiterId.toString()) {
-      return res.status(403).send("Unauthorized");
-    }
+    // if (req.user._id.toString() !== position.recruiterId.toString()) {
+    //   return res.status(403).send("Unauthorized");
+    // }
 
     const filePath = `./uploads/${application.filePath}`;
 
@@ -84,15 +84,34 @@ router.patch(
   }
 );
 
-router.delete(
-  "/:id",
-  verifyToken,
-  allowedRoles(["recruiter"]),
-  async (req, res) => {
-    let id = req.params.id;
-    await Recruiter.findByIdAndDelete(id);
+// router.delete(
+//   "/:id",
+//   verifyToken,
+//   allowedRoles(["recruiter"]),
+//   async (req, res) => {
+//     let id = req.params.id;
+//     await Recruiter.findByIdAndDelete(id);
 
-    return res.status(200).json({ id });
+//     return res.status(200).json({ id });
+//   }
+// );
+
+router.delete(
+  "/api/position/:id",
+
+  async (req, res) => {
+    try {
+      let id = req.params.id;
+      const job = await Recruiter.findByIdAndDelete(id);
+      if (!job) {
+        return res.status(404).json({ message: "Job not found" });
+      }
+      await job.remove();
+      return res.status(200).json({ message: "Job deleted successfully" });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   }
 );
 
