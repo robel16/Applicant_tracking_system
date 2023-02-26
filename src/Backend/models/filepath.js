@@ -11,7 +11,7 @@ const applicantDataSchema = new mongoose.Schema({
     ref: "Position",
     required: true,
   },
-  fileName: {
+  filepath: {
     type: String,
     required: true,
   },

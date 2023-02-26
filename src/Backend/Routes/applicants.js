@@ -1,9 +1,18 @@
 const express = require("express");
-
+const mongoose = require("mongoose");
 const router = express.Router();
 const Applicant = require("../models/applicant");
 const { verifyToken, generateToken } = require("../util");
 const bcrypt = require("bcrypt");
+const multer = require("multer");
+const path = require("path");
+const upload = multer({ dest: "uploads/" });
+
+const FileSchema = new mongoose.Schema({
+  filepath: { type: String, required: true },
+});
+
+const File = mongoose.model("File", FileSchema);
 
 router.get("/", verifyToken, async (req, res) => {
   let applicants = await Applicant.find();
@@ -64,6 +73,21 @@ router.delete("/:id", verifyToken, async (req, res) => {
   await Applicant.findByIdAndDelete(id);
 
   return res.status(200).json({ id });
+});
+
+router.post("/upload", upload.single("file"), async (req, res) => {
+  const { username } = req.body;
+  const filepath = path.join("/", req.file.path);
+
+  const file = new File({ filepath, username });
+
+  try {
+    await file.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

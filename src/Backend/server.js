@@ -18,15 +18,17 @@ app.use("/api/position", require("./Routes/positions"));
 app.use("/api/recruiter", require("./Routes/recruiter"));
 app.use("/api/auth", require("./Routes/auth"));
 
-
+// app.use("/api/file", require("./Routes/filepath.js/file"));
 //db config
- mongoose.set("strictQuery", false);
-//  mongoose.connect(process.env.CONNECTION_URL, 
+mongoose.set("strictQuery", false);
+//  mongoose.connect(process.env.CONNECTION_URL,
 //   () => console.log("connected to database")
 //   );
 async function connectToDatabase() {
   try {
-    await mongoose.connect(`mongodb+srv://admin:admin2023@cluster0.2bhecal.mongodb.net/ATSDB?retryWrites=true&w=majority`);
+    await mongoose.connect(
+      `mongodb+srv://admin:admin2023@cluster0.2bhecal.mongodb.net/ATSDB?retryWrites=true&w=majority`
+    );
     console.log("connected to database");
   } catch (error) {
     console.error("Error connecting to database:", error.message);
