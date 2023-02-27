@@ -7,10 +7,10 @@ import { AiFillDownCircle, AiOutlineEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import { IoIosArrowDropupCircle } from "react-icons/io";
 import EditJob from "../../routes/edit-job/edit-job.route";
+import { useUserTokenStore } from "../../store/store";
 const JoblistCard = (props) => {
   // console.log(props.Joblist)
 
-  const token = localStorage.getItem("userToken");
   const Displayjobs = (props) => {
     const Handleclick = () => {
       setIsCollapsed(!isCollapsed);
@@ -22,8 +22,14 @@ const JoblistCard = (props) => {
     const job = props.job;
 
     const deleteJob = (_id) => {
+      const { Usertoken } = useUserTokenStore.getState();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${Usertoken}`,
+        },
+      };
       axios
-        .delete(`http://localhost:4000/api/position/${job._id}`, {})
+        .delete(`http://localhost:4000/api/position/${job._id}`, config)
         .then((response) => {
           console.log(response.data);
         })

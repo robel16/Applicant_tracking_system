@@ -27,21 +27,21 @@ function verifyToken(req, res, next) {
   });
 }
 
-function allowedRoles(allowedRoles) {
-  return function (req, res, next) {
-    let roles = req.roles;
+// function allowedRoles(allowedRoles) {
+//   return function (req, res, next) {
+//     let roles = req.roles;
 
-    for (let i = 0; i < roles.length; i++) {
-      if (allowedRoles.includes(roles[i])) {
-        next();
-        return;
-      }
-    }
-  };
-}
+//     for (i = 0; i < roles.length; i++) {
+//       if (allowedRoles.includes(roles[i])) {
+//         next();
+//         return;
+//       }
+//     }
+//   };
+// }
 
 module.exports = {
   generateToken,
   verifyToken,
-  allowedRoles,
+  // allowedRoles,
 };

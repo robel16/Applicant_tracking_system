@@ -1,26 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const Recruiter = require("../models/recruiter");
-const { allowedRoles, verifyToken } = require("../util");
+
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const Position = require("../models/position");
 const Applicant = require("../models/applicant");
-router.get("/", verifyToken, allowedRoles(["recruiter"]), async (req, res) => {
+router.get("/", async (req, res) => {
   let recruiters = await Recruiter.find();
   return res.status(200).json({ recruiters });
 });
 
-router.get(
-  "/:id",
-  verifyToken,
-  allowedRoles(["recruiter"]),
-  async (req, res) => {
-    let id = req.params.id;
-    let recruiter = await Recruiter.findById(id);
-    return res.status(200).json({ recruiter });
-  }
-);
+router.get("/:id", async (req, res) => {
+  let id = req.params.id;
+  let recruiter = await Recruiter.findById(id);
+  return res.status(200).json({ recruiter });
+});
 
 //get all the filepath
 router.get("/file", async (req, res) => {
@@ -49,7 +44,7 @@ router.get("/file", async (req, res) => {
   }
 });
 
-// verifyToken, allowedRoles(["recruiter"]),
+//,
 router.post("/", async (req, res) => {
   let fields = req.body.recruiter;
   let recruiter;
@@ -64,55 +59,45 @@ router.post("/", async (req, res) => {
   return res.status(200).json(recruiter);
 });
 
-router.patch(
-  "/",
-  verifyToken,
-  allowedRoles(["recruiter"]),
-  async (req, res) => {
-    let fields = req.body.recruiter;
-    let recruiter = await Recruiter.findById(fields.id);
+router.patch("/", async (req, res) => {
+  let fields = req.body.recruiter;
+  let recruiter = await Recruiter.findById(fields.id);
 
-    let fieldKeys = Object.keys(fields);
+  let fieldKeys = Object.keys(fields);
 
-    for (let key in fieldKeys) {
-      if (key != "id") continue;
-      recruiter[key] = fields[key];
-    }
-
-    await recruiter.save();
-    return res.status(200).json(recruiter);
+  for (let key in fieldKeys) {
+    if (key != "id") continue;
+    recruiter[key] = fields[key];
   }
-);
 
-// router.delete(
-//   "/:id",
-//   verifyToken,
-//   allowedRoles(["recruiter"]),
-//   async (req, res) => {
-//     let id = req.params.id;
-//     await Recruiter.findByIdAndDelete(id);
-
-//     return res.status(200).json({ id });
-//   }
-// );
+  await recruiter.save();
+  return res.status(200).json(recruiter);
+});
 
 router.delete(
-  "/api/position/:id",
+  "/:id",
 
   async (req, res) => {
-    try {
-      let id = req.params.id;
-      const job = await Recruiter.findByIdAndDelete(id);
-      if (!job) {
-        return res.status(404).json({ message: "Job not found" });
-      }
-      await job.remove();
-      return res.status(200).json({ message: "Job deleted successfully" });
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ message: "Internal server error" });
-    }
+    let id = req.params.id;
+    await Position.findByIdAndDelete(id);
+
+    return res.status(200).json({ id });
   }
 );
+
+// router.delete("/api/position/:id",  async (req, res) => {
+//   try {
+//     let id = req.params.id;
+//     const job = await Recruiter.findByIdAndDelete(id);
+//     if (!job) {
+//       return res.status(404).json({ message: "Job not found" });
+//     }
+//     await job.remove();
+//     return res.status(200).json({ message: "Job deleted successfully" });
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// });
 
 module.exports = router;

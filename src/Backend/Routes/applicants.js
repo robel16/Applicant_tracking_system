@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const Applicant = require("../models/applicant");
-const { verifyToken, generateToken } = require("../util");
+const { generateToken } = require("../util");
 const bcrypt = require("bcrypt");
 const multer = require("multer");
 const path = require("path");
@@ -14,12 +14,12 @@ const FileSchema = new mongoose.Schema({
 
 const File = mongoose.model("File", FileSchema);
 
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
   let applicants = await Applicant.find();
   return res.status(200).json({ applicants });
 });
 
-router.get("/:id", verifyToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
   let id = req.params.id;
   let applicant = await Applicant.findById(id);
   return res.status(200).json({ applicant });
@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.patch("/", verifyToken, async (req, res) => {
+router.patch("/", async (req, res) => {
   let fields = req.body.applicant;
   let applicant = await Applicant.findById(fields.id);
 
@@ -68,7 +68,7 @@ router.patch("/", verifyToken, async (req, res) => {
   return res.status(200).json(applicant);
 });
 
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   let id = req.params.id;
   await Applicant.findByIdAndDelete(id);
 

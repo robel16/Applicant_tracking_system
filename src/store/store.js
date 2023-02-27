@@ -19,7 +19,8 @@ export const useUserTokenStore = create((set) => ({
 
 export const useStore = create((set) => ({
   toggleSelect: false,
-  setToggleSelect: () => set((state) => ({ toggleSelect: !state.toggleSelect })),
+  setToggleSelect: () =>
+    set((state) => ({ toggleSelect: !state.toggleSelect })),
 }));
 
 // if (process.env.NODE_ENV === "development") {

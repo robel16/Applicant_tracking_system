@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const File = require("../models/filepath");
-const { allowedRoles, verifyToken } = require("../util");
+const { allowedRoles } = require("../util");
 const bcrypt = require("bcrypt");
 
 router.get("/file", async (req, res) => {

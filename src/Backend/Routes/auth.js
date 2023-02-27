@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const Recruiter = require("../models/recruiter");
 const Applicant = require("../models/applicant");
-const { verifyToken, generateToken } = require("../util");
+const { generateToken } = require("../util");
 
 router.post("/login", async (req, res) => {
   let { username, password } = req.body;
@@ -61,7 +61,7 @@ router.post("/userLogin", async (req, res) => {
   });
 });
 
-router.post("/changePassword", verifyToken, async (req, res) => {
+router.post("/changePassword", async (req, res) => {
   let { oldPassword, newPassword } = req.body;
   if (!oldPassword || !newPassword)
     return res.status(400).json({ message: "Invalid Information" });

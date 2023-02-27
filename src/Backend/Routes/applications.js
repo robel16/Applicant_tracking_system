@@ -1,20 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const Application = require("../models/application");
-const { verifyToken } = require("../util");
 
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
   let applications = await Application.find();
   return res.status(200).json({ applications });
 });
 
-router.get("/:id", verifyToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
   let id = req.params.id;
   let application = await Application.findById(id);
   return res.status(200).json({ application });
 });
 
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   let fields = req.body.application;
   let application;
 
@@ -28,7 +27,7 @@ router.post("/", verifyToken, async (req, res) => {
   return res.status(200).json(application);
 });
 
-router.patch("/", verifyToken, async (req, res) => {
+router.patch("/", async (req, res) => {
   let fields = req.body.application;
   let application = await Application.findById(fields.id);
 
@@ -43,7 +42,7 @@ router.patch("/", verifyToken, async (req, res) => {
   return res.status(200).json(application);
 });
 
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   let id = req.params.id;
   await Application.findByIdAndDelete(id);
 
