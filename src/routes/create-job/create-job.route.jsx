@@ -9,44 +9,44 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import SelectInput from "../../components/select-input/select.component";
 import DeleteIcon from "../../components/delete-icon/delete-icon.component";
-import axios from 'axios'
+import axios from "axios";
 
 const DEFAULT_STEP = { prompt: "", type: "" };
-let DEFAULT_BASIC = { inputTitle: "", final_message: "", current_status: "",Instruction:"" };
+let DEFAULT_BASIC = {
+  inputTitle: "",
+  final_message: "",
+  current_status: "",
+  Instruction: "",
+};
 const DEFAULT_INPUT = {
   title: "",
   steps: [DEFAULT_STEP, ""],
-  instruction:""
-
+  instruction: "",
 };
 
 const CreateJob = () => {
   let input = useLocation();
-  let { steps, title, status,instruction } = input.state || DEFAULT_INPUT;
+  let { steps, title, status, instruction } = input.state || DEFAULT_INPUT;
 
   const finalMessage = steps[steps.length - 1];
   DEFAULT_BASIC = {
     ...DEFAULT_BASIC,
     inputTitle: title,
     final_message: finalMessage,
-    
-    
   };
-const instructions = steps[steps.length - 1];
+  const instructions = steps[steps.length - 1];
   DEFAULT_BASIC = {
     ...DEFAULT_BASIC,
-  
+
     Instruction: instructions,
-    
-    
   };
 
-  const [basicinstruction,setbasicinstruction]=useState(instruction)
+  const [basicinstruction, setbasicinstruction] = useState(instruction);
   const [basicInput, setBasicInput] = useState(DEFAULT_BASIC);
   const [currentStatus, setCurrentStatus] = useState(status);
   const [inputSteps, setInputSteps] = useState(steps);
   const [draggable, setDraggable] = useState(false);
-  const { inputTitle, final_message,Instruction } = basicInput;
+  const { inputTitle, final_message, Instruction } = basicInput;
   let draggedItem = useRef();
   let draggedNode = useRef();
 
@@ -56,17 +56,16 @@ const instructions = steps[steps.length - 1];
 
     setInputSteps([...inputSteps]);
   };
- 
+
   const selectInputHandler = (event, i) => {
     inputSteps[i] = { ...inputSteps[i], type: event.target.value };
 
     setInputSteps([...inputSteps]);
   };
- 
+
   const basicInputHandler = (event) => {
     const { name, value } = event.target;
     setBasicInput({ ...basicInput, [name]: value });
-
   };
 
   const statusHandler = (event) => {
@@ -80,25 +79,22 @@ const instructions = steps[steps.length - 1];
     };
     const formData = {
       title: inputTitle,
-       instructions:Instruction,
-       steps: [...inputSteps],
+      instructions: Instruction,
+      steps: [...inputSteps],
       status: currentStatus || "pending-approval",
-     
     };
-    console.log(instructions)
-    console.log(formData);
-  
-  await  axios
-      .post("http://localhost:4000/api/position", {position: formData})
+    // console.log(instructions);
+    // console.log(formData);
+
+    await axios
+      .post("http://localhost:4000/api/position", { position: formData })
       .then((response) => {
-       response.send('uploaded successfully')
-       console.log(formData)
-       
+        response.send("uploaded successfully");
+        console.log(formData);
       })
       .catch((error) => {
         console.error(error);
       });
-  
   };
   //
   //add and remove Steps Handler
@@ -116,36 +112,6 @@ const instructions = steps[steps.length - 1];
     );
   };
   //
-  //drag handlers
-  const handleDragStart = (e, i) => {
-    setTimeout(() => {
-      setDraggable(true);
-      draggedItem.current = i;
-      draggedNode.current = e.target;
-      draggedNode.current.addEventListener("dragend", handleDragEnd);
-    }, 0);
-  };
-
-  const handleDragEnter = (e, i) => {
-    let item = draggedItem.current;
-    let temp;
-    temp = inputSteps[i];
-    inputSteps[i] = inputSteps[item];
-    inputSteps[item] = temp;
-    draggedItem.current = i;
-    setInputSteps([...inputSteps]);
-  };
-  const handleDragEnd = () => {
-    draggedItem.current = null;
-    draggedNode.current = null;
-    setDraggable(false);
-  };
-  const dragStyle = (i) => {
-    if (i === draggedItem.current) {
-      return "dragged";
-    }
-    return "step";
-  };
 
   return (
     <div className="create-job-scrollbars flex flex-col scrolbar scrollbar-thin  scrollbar-thumb-[#192930]  scrollbar-track-white scroll-bar-thumb-rounded  ">
@@ -166,11 +132,11 @@ const instructions = steps[steps.length - 1];
         <form onSubmit={submitHandler}>
           <div className="create-job-titles w-70   ">
             <div className="h33 font-semibold p-2">Job Title</div>
-             <div className="flex absolute right-[30%] sm:right-[5%] top-20 md:right-[20%] submit-buttons ms-[4%] me-2 text-[#FF694B] drop-shadow-2xl ">
+            <div className="flex absolute right-[30%] sm:right-[5%] top-20 md:right-[20%] submit-buttons ms-[4%] me-2 text-[#FF694B] drop-shadow-2xl ">
               <Button
                 type="submit"
                 buttonType="w-24 h-8 border   border-solid border-[#192930] rounded-md text-xl bg-gradient-to-r bg-white hover hover:translate-y-0.5 hover:from-cust-primary hover:to-cust-secondary-darken drop-shadow-md mb-6 "
-               >
+              >
                 Submit
               </Button>
             </div>
@@ -180,19 +146,17 @@ const instructions = steps[steps.length - 1];
               onChange={basicInputHandler}
             />
           </div>
-          
+
           <div className="w-70">
             <div className="font-semibold p-3 mt-2 "> Job Instruction</div>
-                      <div className="mb-4">   
-                         <TextInput 
-                         placeholder="instructions"
-                         name="Instruction"
-                        onChange={basicInputHandler}
-                         value={Instruction}
-         />
-                        
-                      </div>
-                 
+            <div className="mb-4">
+              <TextInput
+                placeholder="instructions"
+                name="Instruction"
+                onChange={basicInputHandler}
+                value={Instruction}
+              />
+            </div>
           </div>
           <div>
             <div className="create-job-stepss flex    ">
@@ -213,17 +177,7 @@ const instructions = steps[steps.length - 1];
               {inputSteps.map((step, i) => {
                 if (i !== inputSteps.length - 1) {
                   return (
-                    <div
-                      className={
-                        draggable
-                          ? dragStyle(i)
-                          : "steps inline-flex m-2 relative"
-                      }
-                      draggable={true}
-                      onDragStart={(event) => handleDragStart(event, i)}
-                      onDragEnter={(event) => handleDragEnter(event, i)}
-                      key={i}
-                    >
+                    <div>
                       <InputFields
                         textInputHandler={textInputHandler}
                         selectInputHandler={selectInputHandler}
@@ -244,9 +198,6 @@ const instructions = steps[steps.length - 1];
               })}
 
               <div className="final-messages mt-[3%] sm:w-1/3">
-               
-        
-               
                 <TextInput
                   placeholder="Final Message"
                   name="final_message"
@@ -269,8 +220,6 @@ const instructions = steps[steps.length - 1];
                 )}
               </div>
             </div>
-
-           
           </div>
         </form>
       </div>

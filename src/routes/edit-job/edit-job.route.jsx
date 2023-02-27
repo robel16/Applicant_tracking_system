@@ -6,61 +6,56 @@ import Button from "../../components/Button/button.component";
 // import "./create-job.style.scss";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import SelectInput from "../../components/select-input/select.component";
 import DeleteIcon from "../../components/delete-icon/delete-icon.component";
-import axios from 'axios'
+import { useUserTokenStore } from "../../store/store";
+import axios from "axios";
 
 const DEFAULT_STEP = { prompt: "", type: "" };
-let DEFAULT_BASIC = { inputTitle: "", final_message: "", current_status: "",Instruction:"" };
+let DEFAULT_BASIC = {
+  inputTitle: "",
+  final_message: "",
+  current_status: "",
+  Instruction: "",
+};
 const DEFAULT_INPUT = {
   title: "",
   steps: [DEFAULT_STEP, ""],
-  instruction:""
-
+  instruction: "",
 };
 
 const Editpage = () => {
-
-const [job,setjob]=useState([])
-const[newjob,setnewjob]=useState([])
+  const [job, setjob] = useState([]);
+  const [newjob, setnewjob] = useState([]);
   let input = useLocation();
 
-useEffect(()=>{
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/position").then((response) => {
+      setjob(response.data.positions);
+    });
+  }, []);
 
-    axios.get("http://localhost:4000/api/position").then((response)=>{
-     
-       setjob(response.data.positions)
-  
-    })
-},[])
-
-
-  let { steps, title, status,instruction } = input.state || DEFAULT_INPUT;
+  let { steps, title, status, instruction } = input.state || DEFAULT_INPUT;
 
   const finalMessage = steps[steps.length - 1];
   DEFAULT_BASIC = {
     ...DEFAULT_BASIC,
     inputTitle: title,
     final_message: finalMessage,
-    
-    
   };
-const instructions = steps[steps.length - 1];
+  const instructions = steps[steps.length - 1];
   DEFAULT_BASIC = {
     ...DEFAULT_BASIC,
-  
+
     Instruction: instructions,
-    
-    
   };
 
-  const [basicinstruction,setbasicinstruction]=useState(instruction)
+  const [basicinstruction, setbasicinstruction] = useState(instruction);
   const [basicInput, setBasicInput] = useState(DEFAULT_BASIC);
   const [currentStatus, setCurrentStatus] = useState(status);
   const [inputSteps, setInputSteps] = useState(steps);
-  const { inputTitle, final_message,Instruction } = basicInput;
-
+  const { inputTitle, final_message, Instruction } = basicInput;
 
   //input handlers
   const textInputHandler = (event, i) => {
@@ -68,21 +63,48 @@ const instructions = steps[steps.length - 1];
 
     setInputSteps([...inputSteps]);
   };
- 
+
   const selectInputHandler = (event, i) => {
     inputSteps[i] = { ...inputSteps[i], type: event.target.value };
 
     setInputSteps([...inputSteps]);
   };
- 
+
   const basicInputHandler = (event) => {
     const { name, value } = event.target;
     setBasicInput({ ...basicInput, [name]: value });
-
   };
 
   const statusHandler = (event) => {
     setCurrentStatus(event.target.value);
+  };
+  const getPositionData = async (id) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/position/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const EditPositionForm = () => {
+    const { id } = useParams();
+    const [formData, setFormData] = useState(null);
+
+    useEffect(() => {
+      const getPosition = async () => {
+        const positionData = await getPositionData(id);
+        setFormData(positionData);
+      };
+      getPosition();
+    }, [id]);
+    if (!formData) {
+      return <div>Loading...</div>;
+    }
+
+    const { title, instructions, steps, status } = formData;
   };
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -92,40 +114,24 @@ const instructions = steps[steps.length - 1];
     };
     const formData = {
       title: inputTitle,
-       instructions:Instruction,
-       steps: [...inputSteps],
+      instructions: Instruction,
+      steps: [...inputSteps],
       status: currentStatus || "pending-approval",
-     
     };
-
-
-  
-  await  axios
-      .post("http://localhost:4000/api/position/update", {position: formData})
-      .then((response) => {
-       response.send('uploaded successfully')
-       console.log(formData)
-       
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/api/position/update/`,
+        formData
+      );
+      console.log(response.data.position);
+      // Handle success response
+      alert("updated");
+    } catch (error) {
+      console.log(error.response.data.message);
+      // Handle error response
+    }
   };
 
-// const updatejob=(id)=>{
-//     axios.patch("http://localhost:4000/api/position/update",{id:id,
-// newjob:FormData
-// }
-//     )
-// }
-
-
-
-
-
-
-  //
   //add and remove Steps Handler
   const addStep = () => {
     inputSteps.splice(inputSteps.length - 1, 0, DEFAULT_STEP);
@@ -143,17 +149,13 @@ const instructions = steps[steps.length - 1];
   //
   //drag handlers
 
-   let jobs=job.map((val,id)=>{ <h1>{val.instructions}</h1>})
-
-
   return (
     <div className="create-job-scrollbars flex flex-col scrolbar scrollbar-thin  scrollbar-thumb-[#192930]  scrollbar-track-white scroll-bar-thumb-rounded  ">
       <div className="create-job-containers flex flex-col  mt-2 mr-3 mb-2 ml-14 p-4 w-[calc(75vw)] h-[calc(95vh)] ">
-        <h1
-          className="mt-2 text-center font-semibold text-2xl m-7">
+        <h1 className="mt-2 text-center font-semibold text-2xl m-7">
           {title ? "Edit Job/" + title : "edit job"}
         </h1>
-        {jobs}
+
         {title && (
           <div className="edit-delete-icon-containers xl:relative  sm:float-right xl:right-5 xl:self-end">
             <DeleteIcon />
@@ -162,11 +164,11 @@ const instructions = steps[steps.length - 1];
         <form onSubmit={submitHandler}>
           <div className="create-job-titles w-70   ">
             <div className="h33 font-semibold p-2">Job Title</div>
-             <div className="flex absolute right-[30%] sm:right-[5%] top-20 md:right-[20%] submit-buttons ms-[4%] me-2 text-[#FF694B] drop-shadow-2xl ">
+            <div className="flex absolute right-[30%] sm:right-[5%] top-20 md:right-[20%] submit-buttons ms-[4%] me-2 text-[#FF694B] drop-shadow-2xl ">
               <Button
                 type="submit"
                 buttonType="w-24 h-8 border   border-solid border-[#192930] rounded-md text-xl bg-gradient-to-r bg-white hover hover:translate-y-0.5 hover:from-cust-primary hover:to-cust-secondary-darken drop-shadow-md mb-6 "
-               >
+              >
                 Update
               </Button>
             </div>
@@ -176,19 +178,17 @@ const instructions = steps[steps.length - 1];
               onChange={basicInputHandler}
             />
           </div>
-          
+
           <div className="w-70">
             <div className="font-semibold p-3 mt-2 "> Job Instruction</div>
-                      <div className="mb-4">   
-                         <TextInput 
-                         placeholder="instructions"
-                         name="Instruction"
-                        onChange={basicInputHandler}
-                         value={Instruction}
-         />
-                        
-                      </div>
-                 
+            <div className="mb-4">
+              <TextInput
+                placeholder="instructions"
+                name="Instruction"
+                onChange={basicInputHandler}
+                value={Instruction}
+              />
+            </div>
           </div>
           <div>
             <div className="create-job-stepss flex    ">
@@ -230,9 +230,6 @@ const instructions = steps[steps.length - 1];
               })}
 
               <div className="final-messages mt-[3%] sm:w-1/3">
-               
-        
-               
                 <TextInput
                   placeholder="Final Message"
                   name="final_message"
@@ -255,13 +252,11 @@ const instructions = steps[steps.length - 1];
                 )}
               </div>
             </div>
-
-           
           </div>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default Editpage;

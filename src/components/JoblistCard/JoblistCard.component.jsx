@@ -21,21 +21,31 @@ const JoblistCard = (props) => {
 
     const job = props.job;
 
-    const deleteJob = (_id) => {
+    const deleteJob = async (_id) => {
       const { Usertoken } = useUserTokenStore.getState();
       const config = {
         headers: {
           Authorization: `Bearer ${Usertoken}`,
         },
       };
-      axios
-        .delete(`http://localhost:4000/api/position/${job._id}`, config)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      try {
+        const confirmDelete = window.confirm(
+          "Are you sure you want to delete this position?"
+        );
+        if (!confirmDelete) {
+          return;
+        }
+        const response = await axios.delete(
+          `http://localhost:4000/api/position/${job._id}`,
+          config
+        );
+        console.log(response.data);
+        alert("Position deleted successfully");
+        window.location.reload();
+      } catch (error) {
+        console.error(error);
+        alert("Failed to delete position");
+      }
     };
 
     const [isCollapsed, setIsCollapsed] = useState(false);
