@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 const Position = require("../models/position");
 const { allowedRoles, verifyToken } = require("../util");
@@ -36,6 +37,25 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error });
   }
 });
+
+// Create a search route in Express
+router.post("/search", async (req, res) => {
+  const { query } = req.body;
+
+  if (!query) {
+    return res.status(400).json({ message: "Search query cannot be empty" });
+  }
+
+  try {
+    const results = await Position.find({ $text: { $search: query } });
+
+    res.json(results);
+  } catch (err) {
+    console.error("Failed to search MongoDB Atlas:", err);
+    res.status(500).json({ message: "Failed to search MongoDB Atlas" });
+  }
+});
+
 // verifyToken, allowedRoles(["recruiter"]),
 router.patch("/update/:id", async (req, res) => {
   const { id } = req.params;

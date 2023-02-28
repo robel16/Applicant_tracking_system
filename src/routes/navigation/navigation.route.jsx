@@ -52,6 +52,18 @@ const Navigation = () => {
                 Application
               </li>
             </Link>
+
+            <Link to="joblist">
+              {" "}
+              <li
+                className="inline-flex absolute text-sm hover:cursor-pointer after:absolute bg-hover-background left-0 
+              bottom-0 width-3/4 transform scale-x-0 height-0.5 transition  ease-in duration-300
+              hover:after:transform scale-x-1 cursor-pointer"
+              >
+                joblist
+              </li>
+            </Link>
+
             <br></br>
             <Link to="">
               <li
@@ -101,6 +113,22 @@ const Navigation = () => {
                   Application
                 </li>
               </Link>
+
+              <Link
+                to="joblist"
+                // className={(isActive) => console.log(isActive.isActive)}
+              >
+                <li
+                  className={`p-3 lg:text-xl text-white  transition-all ease-in-out md:w-1/10 md:text-sm  ${
+                    pathname === "/application"
+                      ? "bg-cust-secondary hover:bg-cust-secondary"
+                      : "hover:bg-cust-secondary-darken"
+                  }`}
+                >
+                  joblist
+                </li>
+              </Link>
+
               <Link to="">
                 <li
                   className={`p-3 lg:text-xl md:text-sm text-white  transition-all ease-in-out ${

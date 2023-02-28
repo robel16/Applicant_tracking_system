@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { useLocation } from "react-router-dom";
 import img from "../../img/avatar-anisha.png";
-import Data from "../../Data";
-import Button from "../../components/Button/button.component";
+
 import Applicantjoblist from "../ApplicantJoblist/ApplicantJoblsit.route";
 const Applicants = () => {
   const logOut = () => {

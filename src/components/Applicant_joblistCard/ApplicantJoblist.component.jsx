@@ -22,7 +22,6 @@ const JoblistCard = (props) => {
     };
     const [file, setFile] = useState(null);
     const [success, setSuccess] = useState(false);
-
     //handles the submit
     const handleFileChange = (event) => {
       setFile(event.target.files[0]);

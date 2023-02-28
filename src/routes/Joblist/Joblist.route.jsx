@@ -27,6 +27,12 @@ const Joblist = () => {
   // console.log(jobs)
   return (
     <>
+      <div className="relative  w-0 h-10 p-4">
+        <Search />
+      </div>
+      <span className=" absolute top-[10%] left-[20%] p-4 flex  h-10 w-[10%] font-semibold text-xl ">
+        JOB Lists
+      </span>
       <div className="flex flex-col">{jobs}</div>
     </>
 

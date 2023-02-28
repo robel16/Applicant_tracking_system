@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const MongoClient = require("mongodb").MongoClient;
 const routesurl = require("./Routes/Routes");
 
 //app config
@@ -18,12 +19,8 @@ app.use("/api/position", require("./Routes/positions"));
 app.use("/api/recruiter", require("./Routes/recruiter"));
 app.use("/api/auth", require("./Routes/auth"));
 
-// app.use("/api/file", require("./Routes/filepath.js/file"));
-//db config
 mongoose.set("strictQuery", false);
-//  mongoose.connect(process.env.CONNECTION_URL,
-//   () => console.log("connected to database")
-//   );
+
 async function connectToDatabase() {
   try {
     await mongoose.connect(
@@ -41,12 +38,3 @@ app.listen(PORT, (err) => {
   if (err) console.log("Error in server setup");
   console.log("Server listening on Port", PORT);
 });
-// export const userLogin = async (userCredentials) => {
-//   const response = await fetch("url", {
-//     method: "GET",
-//     body: JSON.stringify(userCredentials),
-//   })
-//     .then((response) => response.json)
-//     .catch((err) => console.log("Error occured", err.message));
-//   return response;
-// };
