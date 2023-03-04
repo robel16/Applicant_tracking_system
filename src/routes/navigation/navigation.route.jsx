@@ -128,6 +128,20 @@ const Navigation = () => {
                   joblist
                 </li>
               </Link>
+              <Link
+                to="recruiter-register"
+                // className={(isActive) => console.log(isActive.isActive)}
+              >
+                <li
+                  className={`p-3 lg:text-xl text-white  transition-all ease-in-out md:w-1/10 md:text-sm  ${
+                    pathname === "/application"
+                      ? "bg-cust-secondary hover:bg-cust-secondary"
+                      : "hover:bg-cust-secondary-darken"
+                  }`}
+                >
+                  Add Recruiter
+                </li>
+              </Link>
 
               <Link to="">
                 <li

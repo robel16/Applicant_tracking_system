@@ -17,6 +17,7 @@ const Search = () => {
           query: searchText,
         }
       );
+
       setResults(response.data);
       setSearchIcon(true);
       console.log(response.data);
@@ -32,6 +33,7 @@ const Search = () => {
   const clearHandler = () => {
     setSearchText("");
     setResults([]);
+    setSearchIcon(false);
   };
 
   return (

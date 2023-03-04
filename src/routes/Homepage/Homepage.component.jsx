@@ -13,7 +13,7 @@ import avatar4 from "../../img/avatar-shanai.png";
 import logo1 from "../../img/icon-facebook.svg";
 import logo2 from "../../img/icon-instagram.svg";
 import logo3 from "../../img/icon-twitter.svg";
-
+import * as te from "tw-elements";
 const Homepage = () => {
   const recruitorclick = () => {};
   const applicantclick = () => {};
@@ -29,20 +29,63 @@ const Homepage = () => {
           </div>
           <div className=" md:flex space-x-6">
             {/* menu items */}
-
-            <Button
-              className="btn-mgs  "
-              onClick={() => navigate("recruitor-login")}
+            <a
+              href="recruitor-login"
+              className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
             >
-              log in as a recruitor
-            </Button>
-            <Button onClick={() => navigate("Applicant-login")}>
-              {" "}
-              login as applicant
-            </Button>
+              Recruitor log in
+            </a>
+            <a
+              href="Applicant-login"
+              className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
+            >
+              Applicant log in
+            </a>
           </div>
         </div>
       </div>
+
+      <div
+        id="carouselExampleSlidesOnly"
+        class="relative"
+        data-te-carousel-init
+        data-te-carousel-slide
+      >
+        <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+          <div
+            class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+            data-te-carousel-item
+            data-te-carousel-active
+          >
+            <img
+              src="https://media.licdn.com/dms/image/C4E22AQGwSt7-3vrEBg/feedshare-shrink_1280/0/1658908378122?e=1680739200&v=beta&t=4yiYv7GhbWeYbu4L0qZk8rRmOoaldnEyB43wA5Gv2HU"
+              class="block w-full h-100"
+              alt="Wild Landscape"
+            />
+          </div>
+          <div
+            class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+            data-te-carousel-item
+          >
+            <img
+              src="https://media.licdn.com/dms/image/C4E22AQEZ1aqsv7iEcw/feedshare-shrink_800/0/1671099254305?e=1680739200&v=beta&t=6qBi01aQJQeG7TStf5RGjG-PF6E65Yo4zywC5PnkrpA"
+              class="block w-full h-100 "
+              alt="Camera"
+            />
+          </div>
+          <div
+            class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+            data-te-carousel-item
+          >
+            <img
+              src="https://media.licdn.com/dms/image/C4E22AQHdn8lVMyDcgA/feedshare-shrink_2048_1536/0/1672827694096?e=1680739200&v=beta&t=W0YAgG6hJKeGU4uko76ERSeeAJwuNEO9SN0SV39xVI0"
+              class="block w-full h-100"
+              alt="Exotic Fruits"
+            />
+          </div>
+        </div>
+      </div>
+
       <section id="hero">
         <div className="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row">
           <div className="flexflex-cl mb-32 space-y-12 md:w-1/2">
