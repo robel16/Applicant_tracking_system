@@ -14,36 +14,15 @@ import logo1 from "../../img/icon-facebook.svg";
 import logo2 from "../../img/icon-instagram.svg";
 import logo3 from "../../img/icon-twitter.svg";
 import * as te from "tw-elements";
+import Navbar from "../../routes/Navbar/Navbar";
 const Homepage = () => {
   const recruitorclick = () => {};
   const applicantclick = () => {};
   const navigate = useNavigate();
-  let img =
-    "https://www.mmcytech.com/wp-content/uploads/2022/01/MMCY-Tech_New-white_1.png";
+
   return (
     <>
-      <div className="bg-cust-primary relative   p-6 ">
-        <div className="flex items-center justify-between">
-          <div className="pt-2 ">
-            <img className=" h-[60px]" src={img} alt="" />
-          </div>
-          <div className=" md:flex space-x-6">
-            {/* menu items */}
-            <a
-              href="recruitor-login"
-              className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
-            >
-              Recruitor log in
-            </a>
-            <a
-              href="Applicant-login"
-              className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
-            >
-              Applicant log in
-            </a>
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
       <div
         id="carouselExampleSlidesOnly"

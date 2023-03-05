@@ -20,25 +20,29 @@ function Navbar() {
 
   return (
     <>
-      <div
-        className={`fixed top-0 p-
-      [20px] w-
-      [100%] h-
-      [30px] z-1 transition ease-in duration-0.5 ${show && "bg-black"}`}
-      >
+      <div className={`nav ${show && "bg-[#192930]"}`}>
         <div className="nav__contents">
           <img
             className="Logo"
             onClick={() => navigate("/")}
-            src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
+            src="https://www.mmcytech.com/wp-content/uploads/2022/01/MMCY-Tech_New-white_1.png"
             alt=""
           />
-          <img
-            className="avatar"
-            onClick={() => navigate("/Profile")}
-            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-            alt=""
-          />
+          <div className=" md:flex space-x-6 fixed right-4">
+            {/* menu items */}
+            <a
+              href="recruitor-login"
+              className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
+            >
+              Recruitor log in
+            </a>
+            <a
+              href="Applicant-login"
+              className="p-3 px-6 pt-2  text-brightRed  bg-white rounded-full baseline hover:bg-darkBlue shadow-2xl transition-color duration-200 "
+            >
+              Applicant log in
+            </a>
+          </div>
         </div>
       </div>
     </>

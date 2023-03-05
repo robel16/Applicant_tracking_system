@@ -2,7 +2,6 @@ import "./App.css";
 import LoginForm from "./routes/LoginForm/login.route";
 import Navigation from "./routes/navigation/navigation.route";
 import { Routes, Route } from "react-router";
-
 import Jobs from "./routes/job/job.route";
 import CreateJob from "./routes/create-job/create-job.route";
 import EditJob from "./routes/edit-job/edit-job.route";
@@ -18,13 +17,6 @@ import Recruiter from "./routes/Recruitor/Recruitorsignup.route";
 import { useUserTokenStore } from "./store/store";
 import Applicantpage from "./routes/Applicantpage/Applicantpage.route";
 import Applicantjoblist from "./components/JoblistCard/JoblistCard.component";
-const useTestStore = create((set) => ({
-  value: 0,
-  increase: () => set((state) => ({ value: state.value + 1 })),
-  decrease: () => set((state) => ({ value: state.value - 1 })),
-}));
-
-const user = true;
 
 const App = () => {
   const { Usertoken } = useUserTokenStore();
