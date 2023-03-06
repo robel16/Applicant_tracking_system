@@ -89,7 +89,7 @@ const CreateJob = () => {
     await axios
       .post("http://localhost:4000/api/position", { position: formData })
       .then((response) => {
-        response.send("uploaded successfully");
+        alert("uploaded successfully");
         console.log(formData);
       })
       .catch((error) => {

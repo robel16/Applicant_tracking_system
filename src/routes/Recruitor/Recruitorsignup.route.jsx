@@ -44,7 +44,7 @@ const Signup = () => {
 
   return (
     <div className="flex absolutes justify-center">
-      <div className="login-containers relative font-serif h-99 w-full">
+      <div className="login-containers relative font-serif h-99 w-screen">
         <div className="login-headers mt-7 mr-0 mb-0 ml-12  ">
           <span className="mmcys text-black font-serif text-2xl">MMCY|</span>
           <span className="techs text-cust-secondary text-2xl sm:flex-col ">

@@ -85,8 +85,8 @@ const JoblistCard = (props) => {
         <div
           className={
             isCollapsed
-              ? `flex  flex-row relative xl:w-70 xl:h-[200px] sm:w-70   sm:h-[400px] bg-[#BEB9B9] ml-24 top-[25%] border-2 shadow-xl mx-2 mb-16    rounded-3xl overflow-hidden `
-              : `  flex flex-row relative xl:w-70 xl:h-[500px] sm:w-70 sm:h-[800px] bg-[#BEB9B9]  top-[25%] ml-24 border-2 shadow-xl mx-16 mb-16    rounded-3xl overflow-hidden `
+              ? `flex  flex-row relative xl:w-70 xl:h-[200px] sm:w-70   sm:h-[400px] bg-[#BEB9B9] ml-10 top-[25%] border-2 shadow-xl mx-2 mb-16    rounded-3xl overflow-hidden `
+              : `  flex flex-row relative xl:w-70 xl:h-[500px] sm:w-70 sm:h-[800px] bg-[#BEB9B9]  top-[25%] ml-10 border-2 shadow-xl mx-16 mb-16    rounded-3xl overflow-hidden `
           }
         >
           <div className=" h-10 w-10 relative -right-[85%] top-3 text-5xl">

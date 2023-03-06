@@ -31,6 +31,7 @@ const App = () => {
           <Route path="/application" element={<Application />} />
           <Route path="/Applicant" element={<Applicant />} />
           <Route path="/joblist" element={<Joblist />} />
+          <Route path="/recruiter-register" element={<Recruiter />} />
         </Route>
 
         <Route path="/Applicant-page" element={<Applicantpage />} />
@@ -40,7 +41,6 @@ const App = () => {
   } else {
     return (
       <Routes>
-        <Route path="/recruiter-register" element={<Recruiter />} />
         <Route path="/recruitor-login" element={<LoginForm />} />
         <Route path="/sign-up" element={<SignupForm />} />
         <Route path="/Applicant-login" element={<Applicantslogin />} />

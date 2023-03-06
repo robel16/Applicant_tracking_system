@@ -25,7 +25,7 @@ const Navigation = () => {
             </Link>
           </ul>
         );
-      case "/application":
+      case "/  Job":
         return (
           <ul className="list-nones">
             <Link to="">
@@ -49,10 +49,9 @@ const Navigation = () => {
               bottom-0 width-3/4 transform scale-x-0 height-0.5 transition  ease-in duration-300
               hover:after:transform scale-x-1 cursor-pointer"
               >
-                Application
+                Applications
               </li>
             </Link>
-
             <Link to="joblist">
               {" "}
               <li
@@ -63,15 +62,15 @@ const Navigation = () => {
                 joblist
               </li>
             </Link>
-
             <br></br>
-            <Link to="">
+            <Link to="recruiter-register">
+              {" "}
               <li
                 className="inline-flex absolute text-sm hover:cursor-pointer after:absolute bg-hover-background left-0 
               bottom-0 width-3/4 transform scale-x-0 height-0.5 transition  ease-in duration-300
               hover:after:transform scale-x-1 cursor-pointer"
               >
-                Job
+                Add Recruiter
               </li>
             </Link>
           </ul>
@@ -120,7 +119,7 @@ const Navigation = () => {
               >
                 <li
                   className={`p-3 lg:text-xl text-white  transition-all ease-in-out md:w-1/10 md:text-sm  ${
-                    pathname === "/application"
+                    pathname === "/joblist"
                       ? "bg-cust-secondary hover:bg-cust-secondary"
                       : "hover:bg-cust-secondary-darken"
                   }`}
@@ -128,21 +127,6 @@ const Navigation = () => {
                   joblist
                 </li>
               </Link>
-              <Link
-                to="recruiter-register"
-                // className={(isActive) => console.log(isActive.isActive)}
-              >
-                <li
-                  className={`p-3 lg:text-xl text-white  transition-all ease-in-out md:w-1/10 md:text-sm  ${
-                    pathname === "/application"
-                      ? "bg-cust-secondary hover:bg-cust-secondary"
-                      : "hover:bg-cust-secondary-darken"
-                  }`}
-                >
-                  Add Recruiter
-                </li>
-              </Link>
-
               <Link to="">
                 <li
                   className={`p-3 lg:text-xl md:text-sm text-white  transition-all ease-in-out ${
@@ -152,6 +136,20 @@ const Navigation = () => {
                   }`}
                 >
                   Job
+                </li>
+              </Link>
+              <Link
+                to="recruiter-register"
+                // className={(isActive) => console.log(isActive.isActive)}
+              >
+                <li
+                  className={`p-3 lg:text-xl text-white  transition-all ease-in-out md:w-1/10 md:text-sm  ${
+                    pathname === "/recruiter-register"
+                      ? "bg-cust-secondary hover:bg-cust-secondary"
+                      : "hover:bg-cust-secondary-darken"
+                  }`}
+                >
+                  Add Recruiter
                 </li>
               </Link>
             </ul>
