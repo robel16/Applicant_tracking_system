@@ -27,37 +27,14 @@ const Joblist = () => {
   // console.log(jobs)
   return (
     <>
-      <div className="relative  w-0 h-10 p-4">
+      <div className="relative  left-[60%] w-0 h-10 p-4">
         <Search />
       </div>
-      <span className=" absolute top-[10%] left-[20%] p-4 flex  h-10 w-[10%] font-semibold text-xl ">
+      <span className="  top-[10%] left-[20%] p-4   h-10  font-semibold text-xl ">
         JOB Lists
       </span>
       <div className="flex flex-col">{jobs}</div>
     </>
-
-    // )
-    // for(var i=0;i<joblists.length;i++){
-    //     jobcards.push(<JoblistCard name={joblists[i]}/>)
-    //     console.log(jobcards.name)
-    // }
-    //   return (<>
-    //   {jobcards.instructions}
-    //   {/* <div className=' absolute  w-75 h-full'>
-    //     <div className='relative flex ml-[60%] mt-20 float-right '>
-    //     <Search/>
-    //   </div>
-    //   <div className='absolute top-48 items-center   left-[10%]  '>
-    //     <span className='text-3xl italic relative    font-semibold'>Job Lists </span>
-    //   </div>
-
-    //   </div> */}
-    // {/* <div className='absolute  mt-40 left-32'>
-    //      <h1 className='text-xl  p-2'>{!iscollaps ? truncate(``,40): truncate(``,400)} </h1>
-
-    //     </div> */}
-
-    //      <JoblistCard Joblist={joblists}/>
   );
 };
 

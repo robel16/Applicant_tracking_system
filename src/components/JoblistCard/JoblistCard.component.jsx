@@ -53,7 +53,7 @@ const JoblistCard = (props) => {
       return string?.length > n ? string.substr(0, n - 1) + "..." : string;
     };
     const [text, setText] = useState(truncate(`${job.instructions} `, 40));
-    const classname = " md:text-xl font-normal sm:text-sm ";
+    const classname = " md:text-xl font-normal  ml-10 sm:text-sm ";
     const Editpage = () => {
       window.location.href = "/EditJob";
     };
@@ -138,9 +138,7 @@ const JoblistCard = (props) => {
                 : `absolute top-[35%] ml-24 text-md `
             }
           >
-            <h1 className="font-semibold text-2xl sm:mt-4 ">
-              Job instructions
-            </h1>
+            <h1 className="font-semibold text-xl sm:mt-4 ">Job instructions</h1>
 
             <span className={`${classname} `}>{text}</span>
           </div>
@@ -150,11 +148,6 @@ const JoblistCard = (props) => {
         </div>
       </>
     );
-
-    // })
-    // return jobslists
-
-    //  }
   };
   return <>{Displayjobs(props)}</>;
 };

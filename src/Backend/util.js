@@ -27,19 +27,6 @@ function verifyToken(req, res, next) {
   });
 }
 
-// function allowedRoles(allowedRoles) {
-//   return function (req, res, next) {
-//     let roles = req.roles;
-
-//     for (i = 0; i < roles.length; i++) {
-//       if (allowedRoles.includes(roles[i])) {
-//         next();
-//         return;
-//       }
-//     }
-//   };
-// }
-
 module.exports = {
   generateToken,
   verifyToken,

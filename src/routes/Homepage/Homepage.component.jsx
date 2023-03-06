@@ -12,7 +12,8 @@ import avatar3 from "../../img/avatar-richard.png";
 import avatar4 from "../../img/avatar-shanai.png";
 import logo1 from "../../img/icon-facebook.svg";
 import logo2 from "../../img/icon-instagram.svg";
-import logo3 from "../../img/icon-twitter.svg";
+import logo3 from "../../img/linkedin-svgrepo-com (1).svg";
+
 import * as te from "tw-elements";
 import Navbar from "../../routes/Navbar/Navbar";
 const Homepage = () => {
@@ -194,9 +195,10 @@ const Homepage = () => {
               <img className="w-16 -mt-14" src={avatar2} alt="" />
               <h5 className="text-lg font-bold"> Ali</h5>
               <p className="text-sm text-darkGrayishBlue">
-                "manage has supercharged our team's workflow.the ability to
-                maintain visibility on larger milestone at all times keeps
-                everyone motivated"
+                "Mollit ea voluptate incididunt veniam nisi. Aliquip est fugiat
+                ut ullamco qui magna anim. Pariatur id enim ea mollit aute
+                dolore irure minim cillum excepteur et quis. Occaecat enim anim
+                sint ad nulla."
               </p>
             </div>
 
@@ -204,9 +206,9 @@ const Homepage = () => {
               <img className="w-16 -mt-14" src={avatar1} alt="" />
               <h5 className="text-lg font-bold"> Richerd</h5>
               <p className="text-sm text-darkGrayishBlue">
-                "manage has supercharged our team's workflow.the ability to
-                maintain visibility on larger milestone at all times keeps
-                everyone motivated"
+                "Eu velit in labore do tempor voluptate veniam non labore. Velit
+                dolor fugiat incididunt velit fugiat sunt. Nostrud ut minim
+                proident adipisicing labore mollit."
               </p>
             </div>
 
@@ -214,9 +216,11 @@ const Homepage = () => {
               <img className="w-16 -mt-14" src={avatar4} alt="" />
               <h5 className="text-lg font-bold"> Shanai</h5>
               <p className="text-sm text-darkGrayishBlue">
-                "manage has supercharged our team's workflow.the ability to
-                maintain visibility on larger milestone at all times keeps
-                everyone motivated"
+                "Reprehenderit sint ea ex dolore ullamco eu est laborum amet in
+                qui ipsum sunt. Incididunt laboris id dolor et. Elit eiusmod
+                sint reprehenderit elit dolor culpa. Pariatur proident Lorem
+                cillum eu nostrud. Exercitation dolor irure dolore esse ea
+                cupidatat adipisicing eu minim nulla laborum fugiat non non."
               </p>
             </div>
           </div>
@@ -247,19 +251,24 @@ const Homepage = () => {
         </div>
       </section>
       <footer className="bg-veryDarkBlue">
-        <div className="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
-          <div className="flex justify-center space-x-4">
-            <a href="#">
+        <div className="container flex md:flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 sm:flex-row md:space-y-0">
+          <div className="flex flex-row justify-center space-x-4">
+            <a href="https://www.facebook.com/MMCYTech/">
               <img
                 class="h-8 transform transition-all hover:scale-125"
                 src={logo1}
                 alt=""
               />
+            </a>
+            <a href="">
               <img
                 class="h-8 transform transition-all hover:scale-125"
                 src={logo2}
                 alt=""
               />
+            </a>
+            <a href="https://www.linkedin.com/company/mmcytech/mycompany/">
+              {" "}
               <img
                 class="h-8 transform transition-all hover:scale-125"
                 src={logo3}
