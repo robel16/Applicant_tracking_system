@@ -29,7 +29,7 @@ const JoblistCard = (props) => {
 
     const handleFileUpload = async () => {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", file, file.name);
 
       try {
         await axios.post(
