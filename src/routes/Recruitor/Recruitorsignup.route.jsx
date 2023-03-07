@@ -52,7 +52,7 @@ const Signup = () => {
           </span>
           <span className="mmcys text-black font-serif text-2xl m-6">
             {" "}
-            Recrruitor registration
+            Recruitor registration
           </span>
         </div>
 
@@ -100,7 +100,7 @@ const Signup = () => {
               required
             />
 
-            <Button className="btn-mgs  ">sign up</Button>
+            <Button className="btn-mgs  ">Register</Button>
           </form>
         </div>
         <img src={bg1} alt="test" className="bg-svgs absolute bottom-0 w-100" />
