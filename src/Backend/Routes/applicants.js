@@ -78,8 +78,8 @@ router.delete("/:id", async (req, res) => {
 router.post("/upload", upload.single("file"), async (req, res) => {
   const { username } = req.body;
   const filepath = path.join("/", req.file.path);
-
-  const file = new File({ filepath, username });
+  const filename = req.file.originalname;
+  const file = new File({ filepath, filename, username });
 
   try {
     await file.save();
